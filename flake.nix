@@ -13,6 +13,10 @@
         (home-manager.nixosModules.home-manager)
       ];
       home-manager = {
+        # This is needed to make sure that home-manager follows the
+        # pkgs/nixpkgs specified in this flake.
+        #
+        # Relevant github issue: https://github.com/divnix/devos/issues/30
         useGlobalPkgs = true;
         useUserPackages = true;
       };
