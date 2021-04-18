@@ -28,11 +28,22 @@
         user = "breakds";
         imports = [ ./by-user/breakds ];
       };
+      nixosModules.cassandra-home = mkHomeManagerModule {
+        user = "cassandra";
+        imports = [ ./by-user/cassandra ];
+      };
       nixosConfigurations.breakds-vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./machines/breakds-vm.nix
           self.nixosModules.breakds-home
+        ];
+      };
+      nixosConfigurations.cassandra-vm = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/cassandra-vm.nix
+          self.nixosModules.cassandra-home
         ];
       };
     };
