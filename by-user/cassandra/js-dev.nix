@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let pkgs = import <nixpkgs> {};
+let stable-nodejs = pkgs.nodejs-12_x;
 
     # nodejs-lst = buildNodejs {
     #   enableNpm = true;
@@ -8,12 +8,11 @@ let pkgs = import <nixpkgs> {};
     #   sha256 = "1xmy73q3qjmy68glqxmfrk6baqk655py0cic22h1h0v7rx0iaax8";
     # };
 
-    nodejs-lst = pkgs.nodejs-12_x;
 
 in {
   home.packages = with pkgs; [
-    nodejs-lst
-    (yarn.override { nodejs = nodejs-lst; })
-    nodePackages.create-react-app
+    stable-nodejs
+    (yarn.override { nodejs = stable-nodejs; })
+    (nodePackages.create-react-app.override { nodejs = stable-nodejs; })
   ];
 }
