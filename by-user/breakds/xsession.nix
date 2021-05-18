@@ -133,7 +133,7 @@ in {
   };
 
   # This will generate $HOME/.config/i3status-rust/config.toml
-  home.file = if builtin.elem mainConfig.networking.hostName [ "rival" ]; then
+  home.file = if builtin.elem mainConfig.networking.hostName [ "rival" ] then
     # Laptop configuration which has battery shown
     ".config/i3status-rust/config.toml".source = ./dotfiles/i3status-rust.toml;
   } else {
