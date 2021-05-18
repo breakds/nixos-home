@@ -133,12 +133,9 @@ in {
   };
 
   # This will generate $HOME/.config/i3status-rust/config.toml
-  home.file = if builtin.elem mainConfig.networking.hostName [ "rival" ] then
-    # Laptop configuration which has battery shown
-    ".config/i3status-rust/config.toml".source = ./dotfiles/i3status-rust.toml;
-  } else {
-    ".config/i3status-rust/config.toml".source = ./dotfiles/i3status-rust.desktop.toml;
-  };
+  # TODO(breakds): Use laptop configuration which has battery shown.
+  # Will need to handle desktop explicitly in the future.
+  home.file.".config/i3status-rust/config.toml".source = ./dotfiles/i3status-rust.toml;
   
   # TODO(breakds): Switch to declaration version when new home-manager
   # has built-in support for i3status-rust
