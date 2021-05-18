@@ -3,6 +3,7 @@
 {
   imports = [
     ./git.nix
+    ./xsession.nix
   ];
   
   home.file = {
