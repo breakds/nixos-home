@@ -16,7 +16,7 @@ in {
       # Use Windows/Command key as the modifier
       config = rec {
         modifier = "Mod4";
-        terminal = "${pkgs.st}/bin/st";
+        terminal = "${pkgs.alacritty}/bin/alacritty";
         menu = "${pkgs.rofi}/bin/rofi -show drun";
 
         fonts = [ "RobotoMono 9" ];

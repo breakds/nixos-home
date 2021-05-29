@@ -4,6 +4,7 @@
   imports = [
     ./git.nix
     ./xsession.nix
+    ./alacritty.nix
   ];
   
   home.file = {
