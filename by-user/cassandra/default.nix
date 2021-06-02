@@ -3,7 +3,6 @@
 {
   imports = [
     ./git.nix
-    ./js-dev.nix
   ];
   
   home.file = {
