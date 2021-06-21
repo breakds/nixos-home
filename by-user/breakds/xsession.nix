@@ -30,7 +30,10 @@ in {
           terminal = "${pkgs.alacritty}/bin/alacritty";
           menu = "${pkgs.rofi}/bin/rofi -show drun";
 
-          fonts = [ "RobotoMono 9" ];
+          fonts = {
+            names = [ "RobotoMono" "FontAwesome" ];
+            size = 9.0;
+          };
 
           gaps = {
             inner = 6;
