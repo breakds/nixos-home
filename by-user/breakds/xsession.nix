@@ -2,17 +2,17 @@
 
 let cfg = config.home.bds;
 
-    
+
 
 in {
   options.home.bds = with lib; {
-    i3StatusBattery = mkOption {
+    laptopXsession = mkOption {
       type = types.bool;
-      description = "Whether to show battery icon on i3 status configuration";
+      description = "When set to true, enable graphical settings for laptop";
       default = false;
     };
   };
-  
+
   config = {
     xsession = {
       enable = true;
@@ -62,7 +62,7 @@ in {
             "${modifier}+Shift+l" = "move up";
             "${modifier}+Shift+semicolon" = "move right";
 
-            # Alternatively, you can use the cursor keys.          
+            # Alternatively, you can use the cursor keys.
             "${modifier}+Shift+Left" = "move left";
             "${modifier}+Shift+Down" = "move down";
             "${modifier}+Shift+Up" = "move up";
@@ -120,7 +120,7 @@ in {
             "${modifier}+Shift+r" = "restart";
             "${modifier}+Shift+e" =
               "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
-            
+
             "${modifier}+r" = "mode resize";
           };
 
@@ -140,7 +140,7 @@ in {
           };
 
           bars = [{
-            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs";
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml";
           }];
         };
       };
@@ -149,14 +149,64 @@ in {
     # This will generate $HOME/.config/i3status-rust/config.toml
     # TODO(breakds): Use laptop configuration which has battery shown.
     # Will need to handle desktop explicitly in the future.
-    home.file.".config/i3status-rust/config.toml".source = ./dotfiles/i3status-rust.toml;
-    
+    # home.file.".config/i3status-rust/config.toml".source = ./dotfiles/i3status-rust.toml;
+
     # TODO(breakds): Switch to declaration version when new home-manager
     # has built-in support for i3status-rust
     #
-    # programs.i3status-rust = {
-    #   enable = true;
-    #   icons = "awesome5";
-    # };
+    programs.i3status-rust = {
+      enable = true;
+      bars = {
+        bottom = {
+          theme = "slick";
+          icons = "awesome";
+          blocks = [
+            {
+              block = "backlight";
+              invert_icons = true;
+            }
+            
+            {
+              block = "disk_space";
+              path = "/";
+              alias = "/";
+              info_type = "available";
+              format = "{icon} {available} / {total}";
+              unit = "GB";
+              interval = 30;
+              warning = 20.0;
+              alert = 10.0;
+            }
+            
+            {
+              block = "memory";
+              display_type = "memory";
+              format_mem = "{mem_used}";
+            }
+
+            {
+              block = "cpu";
+              interval = 1;
+              format = "{utilization}";
+            }
+
+            {
+              block = "sound";
+            }
+
+            {
+              block = "time";
+              interval = 30;
+              format = "%a %d/%m %R";
+            }
+          ] ++ (lib.lists.optionals cfg.laptopXsession [
+            {
+              block = "battery";
+              interval = 15;
+            }
+          ]);
+        };
+      };
+    };
   };
 }

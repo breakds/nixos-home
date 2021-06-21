@@ -24,9 +24,17 @@
         inherit imports;
       };
     }; in {
+      
       nixosModules.breakds-home = mkHomeManagerModule {
         user = "breakds";
         imports = [ ./by-user/breakds ];
+      };
+      nixosModules.breakds-home-laptop = mkHomeManagerModule {
+        user = "breakds";
+        imports = [
+          ./by-user/breakds
+          ./by-user/breakds/laptop.nix
+        ];
       };
       nixosModules.cassandra-home = mkHomeManagerModule {
         user = "cassandra";
@@ -37,6 +45,13 @@
         modules = [
           ./machines/breakds-vm.nix
           self.nixosModules.breakds-home
+        ];
+      };
+      nixosConfigurations.breakds-laptop-vm = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./machines/breakds-vm.nix
+          self.nixosModules.breakds-home-laptop
         ];
       };
       nixosConfigurations.cassandra-vm = nixpkgs.lib.nixosSystem {
