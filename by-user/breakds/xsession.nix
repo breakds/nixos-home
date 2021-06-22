@@ -160,12 +160,12 @@ in {
         bottom = {
           theme = "slick";
           icons = "awesome";
-          blocks = [
+          blocks = (lib.lists.optionals cfg.laptopXsession [
             {
               block = "backlight";
               invert_icons = true;
             }
-            
+          ]) ++ [
             {
               block = "disk_space";
               path = "/";
