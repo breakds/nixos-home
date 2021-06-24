@@ -116,4 +116,6 @@ alias ga="git add"
 alias gc="git commit"
 alias gst="git status"
 
+eval "$(direnv hook zsh)"
+
 neofetch
