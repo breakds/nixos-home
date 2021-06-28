@@ -5,6 +5,7 @@
     ./git.nix
     ./xsession.nix
     ./alacritty.nix
+    ./sync.nix
   ];
   
   home.file = {
