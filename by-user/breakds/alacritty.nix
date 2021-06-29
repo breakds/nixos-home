@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.alacritty= {
@@ -44,7 +44,7 @@
           normal.family = "Fira Code";
           bold.family = "Fira Code";
           italic.family = "Fira Code";
-          size = 10.0;
+          size = if config.home.bds.laptopXsession then 8.0 else 10.0;
           offset = { x = 0; y = 0; };
         };
         draw_bold_text_with_bright_colors = true;
