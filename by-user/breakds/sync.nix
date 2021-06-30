@@ -6,6 +6,8 @@ let cloneRepo = { source, path } : lib.hm.dag.entryAfter ["writeBoundary"] ''
       fi
     '';
 
+    sync-org = pkgs.callPackage ../../pkgs/sync-org {};
+
 in {
   home.activation.initPasswordStore = cloneRepo {
     source = "git@github.com:breakds/PastOre.git";
@@ -20,5 +22,30 @@ in {
   home.activation.initOrg = cloneRepo {
     source = "git@github.com:breakds/org.git";
     path = "org";
+  };
+
+  systemd.user = {
+    # Install the timer
+    timers.sync-org-repo = {
+      Unit.Description = "Sync my org to git server every now and then";
+      Timer = {
+        Unit = "sync-org-repo.service";
+        # Run this every 10 seconds
+        OnCalendar = "*-*-* *:1,11,21,31,41,51:00";
+      };
+      Install = {
+        WantedBy = [ "timers.target" ];
+      };
+    };
+
+    # The service itself
+    services.sync-org-repo = {
+      Unit.Description = "Sync or with upstream on github";
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${sync-org}/bin/sync-org";
+        WorkingDirectory = "/home/breakds";
+      };
+    };
   };
 }
