@@ -31,7 +31,7 @@ in {
       Timer = {
         Unit = "sync-org-repo.service";
         # Run this every 10 seconds
-        OnCalendar = "*-*-* *:1,11,21,31,41,51:00";
+        OnCalendar = "*-*-* *:2,12,22,32,42,52:00";
       };
       Install = {
         WantedBy = [ "timers.target" ];
