@@ -14,6 +14,7 @@ in {
     };
     extraConfig = {
       pull.rebase = true;
+      init.defaultBranch = "master";
     };
   };
 }
