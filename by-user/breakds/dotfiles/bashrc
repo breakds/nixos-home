@@ -1,3 +1,6 @@
-eval "(direnv hook bash)"
+# If direnv is installed, initialize it
+if [ -x "$(command -v direnv)" ]; then
+    eval "(direnv hook bash)"
+fi
 
 export EDITOR=emacs
