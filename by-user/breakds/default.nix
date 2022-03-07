@@ -6,6 +6,7 @@
     ./xsession.nix
     ./alacritty.nix
     ./sync.nix
+    ./ssh.nix
   ];
   
   home.file = {
