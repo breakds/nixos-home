@@ -23,6 +23,10 @@
         port = 22;
         proxyJump = "sisyphus";
       };
+
+      "richelieu" = {
+        hostname = "10.77.1.121";
+      };
     };
   };
 }
