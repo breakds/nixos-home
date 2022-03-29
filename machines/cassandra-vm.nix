@@ -2,6 +2,7 @@
 
 {
   config = {
+    nixpkgs.config.allowUnfree = true;
     users.users."cassandra" = {
       isNormalUser = true;
       initialPassword = "I_AM_GROOT";
