@@ -15,6 +15,15 @@
     ffmpeg
   ];
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv = {
+      enable = true;
+      enableFlakes = true;
+    };
+  };
+  
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
