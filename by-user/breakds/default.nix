@@ -12,6 +12,7 @@
   home.file = {
     ".bashrc".source = ./dotfiles/bashrc;
     ".zshrc".source = ./dotfiles/zshrc;
+    ".inputrc".source = ./dotfiles/inputrc;
   };
 
   programs.direnv = {
