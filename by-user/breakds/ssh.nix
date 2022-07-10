@@ -39,8 +39,9 @@
           }
         ];
         forwardX11 = true;
+        forwardX11Trusted = true;
       };
-      
+
       "gpudev-005" = {
         hostname = "39.101.198.43";
         port = 6200;
