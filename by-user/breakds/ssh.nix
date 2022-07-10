@@ -28,6 +28,11 @@
         hostname = "10.77.1.121";
       };
 
+      "into-samaritan" = {
+        hostname = "10.77.1.185";
+        proxyJump = "www.breakds.org";
+      };
+      
       "gpudev-005" = {
         hostname = "39.101.198.43";
         port = 6200;
