@@ -31,6 +31,14 @@
       "into-samaritan" = {
         hostname = "10.77.1.185";
         proxyJump = "www.breakds.org";
+        localForwards = [
+          {
+            bind.port = 8888;
+            host.address = "localhost";
+            host.port = 8888;
+          }
+        ];
+        forwardX11 = true;
       };
       
       "gpudev-005" = {
