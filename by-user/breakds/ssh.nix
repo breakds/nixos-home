@@ -47,6 +47,16 @@
         port = 6200;
         user = "yiqing.yang";
       };
+
+      "zero" = {
+        hostname = "10.77.1.221";
+        user = "breakds";
+      };
+
+      "gail3" = {
+        hostname = "gail3.breakds.org";
+        proxyJump = "zero";
+      };
     };
   };
 }
