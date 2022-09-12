@@ -42,6 +42,20 @@
         forwardX11Trusted = true;
       };
 
+      "into-lorian" = {
+        hostname = "10.77.1.128";
+        proxyJump = "www.breakds.org";
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
+      "into-lothric" = {
+        hostname = "10.77.1.127";
+        proxyJump = "www.breakds.org";
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
       "gpudev-005" = {
         hostname = "39.101.198.43";
         port = 6200;
