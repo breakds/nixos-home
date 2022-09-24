@@ -24,6 +24,12 @@
         proxyJump = "sisyphus";
       };
 
+      "kami" = {
+        hostname = "192.168.110.111";
+        port = 22;
+        proxyJump = "sisyphus";
+      };
+
       "richelieu" = {
         hostname = "10.77.1.121";
       };
