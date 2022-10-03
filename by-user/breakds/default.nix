@@ -88,5 +88,19 @@
       gc = "git commit";
       gst = "git status";
     };
+
+    initExtra = ''
+      if [[ -n $SSH_CONNECTION ]]; then
+        export EDITOR='emacs'
+      else
+        export EDITOR='emacs'
+      fi
+
+      if [ -x "$(command -v direnv)" ]; then
+        eval "$(direnv hook zsh)"
+      fi
+      # Be fancy!
+      neofetch
+    '';
   };
 }
