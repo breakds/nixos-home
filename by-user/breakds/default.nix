@@ -41,8 +41,6 @@
         "dotenv"
         "extract"  # decompression general command
         "z"
-        "nix-zsh-completions"
-        "nix-shell"
       ];
     };
 
@@ -55,6 +53,28 @@
           repo = "zsh-autosuggestions";
           rev = "v0.7.0";
           sha256 = "sha256-KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
+        };
+      }
+      
+      {
+        # will source nix-zsh-completions.plugin.zsh
+        name = "nix-zsh-completions";
+        src = pkgs.fetchFromGitHub {
+          owner = "spwhitt";
+          repo = "nix-zsh-completions";
+          rev = "0.4.4";
+          sha256 = "sha256-Djs1oOnzeVAUMrZObNLZ8/5zD7DjW3YK42SWpD2FPNk=";
+        };
+      }
+
+      {
+        # will source nix-shell.plugin.zsh
+        name = "nix-sehll";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "v0.5.0";
+          sha256 = "sha256-IT3wpfw8zhiNQsrw59lbSWYh0NQ1CUdUtFzRzHlURH0=";
         };
       }
     ];
