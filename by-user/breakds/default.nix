@@ -11,7 +11,6 @@
   
   home.file = {
     ".bashrc".source = ./dotfiles/bashrc;
-    ".zshrc".source = ./dotfiles/zshrc;
     ".inputrc".source = ./dotfiles/inputrc;
   };
 
@@ -29,5 +28,32 @@
       dracula-theme.theme-dracula
       yzhang.markdown-all-in-one
     ];
+  };
+
+  programs.zsh = {
+    enable = true;
+    
+    oh-my-zsh = {
+      enable = true;
+      theme = "ys";
+      plugins = [
+        "pass"     # pass store auto-completion
+        "dotenv"
+        "extract"  # decompression general command
+        "z"
+        "nix-zsh-completions"
+        "nix-shell"
+      ];
+    };
+
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+    defaultKeymap = "emacs";
+
+    shellAliases = {
+      ga = "git add";
+      gc = "git commit";
+      gst = "git status";
+    };
   };
 }
