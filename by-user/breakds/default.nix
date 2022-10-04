@@ -66,17 +66,6 @@
           sha256 = "sha256-Djs1oOnzeVAUMrZObNLZ8/5zD7DjW3YK42SWpD2FPNk=";
         };
       }
-
-      {
-        # will source nix-shell.plugin.zsh
-        name = "nix-sehll";
-        src = pkgs.fetchFromGitHub {
-          owner = "chisui";
-          repo = "zsh-nix-shell";
-          rev = "v0.5.0";
-          sha256 = "sha256-IT3wpfw8zhiNQsrw59lbSWYh0NQ1CUdUtFzRzHlURH0=";
-        };
-      }
     ];
 
     enableCompletion = true;
@@ -90,15 +79,25 @@
     };
 
     initExtra = ''
+      export VISUAL='emacs'
       if [[ -n $SSH_CONNECTION ]]; then
         export EDITOR='emacs'
       else
         export EDITOR='emacs'
       fi
 
+      # Setting up direnv. Actually I am not entirely sure this is needed now.
       if [ -x "$(command -v direnv)" ]; then
         eval "$(direnv hook zsh)"
       fi
+
+      # I do not like accepting autosuggestions with right arrow (i.e.
+      # forward-char). Only keep end-of-line here.
+
+      ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+        end-of-line
+      )
+
       # Be fancy!
       neofetch
     '';
