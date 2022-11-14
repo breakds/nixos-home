@@ -1,10 +1,13 @@
-{ writeShellScriptBin }:
+{ writeShellApplication, git, coreutils, openssh }:
 
-writeShellScriptBin "sync-org" ''
+writeShellApplication {
+  name = "sync-org";
+  runtimeInputs = [ git coreutils openssh ];
+  text = ''
   WORKING_DIR=$HOME/org
 
   function sync_org::diff() {
-      cd ''${WORKING_DIR}
+      cd "''${WORKING_DIR}"
 
       # 1. Check whether there are untracked files
       has_untracked=$(git ls-files --others | wc -l)
@@ -15,7 +18,7 @@ writeShellScriptBin "sync-org" ''
       fi
 
       # 2. Check outstanding changes
-      git diff-index --quiet $1
+      git diff-index --quiet "$1"
       has_changes=$?
 
       if [[ ''${has_changes} -ne 0 ]]; then
@@ -27,7 +30,7 @@ writeShellScriptBin "sync-org" ''
   }
 
   function sync_org::try_commit() {
-      cd ''${WORKING_DIR}
+      cd "''${WORKING_DIR}"
 
       # Check whether there are outstanding changes
       if [[ "$(sync_org::diff HEAD)" == "no" ]]; then
@@ -39,12 +42,16 @@ writeShellScriptBin "sync-org" ''
       # When there are changes, list the diffs and create a commit.
       git diff-index --name-status HEAD
       echo "[info] Creating commit ..."
-      git add *
-      git commit -m "@$(hostname) Automatic Sync,  $(date)"
+      git add .
+      if [ -z "$(git status --porcelain)" ]; then
+          echo "[ ok ] nothing to commit."  
+      else
+          git commit -m "@$(hostname) Automatic Sync,  $(date)"
+      fi
   }
 
   function sync_org::pull_rebase() {
-      cd ''${WORKING_DIR}
+      cd "''${WORKING_DIR}"
 
       git pull --rebase
       pull_success=$?
@@ -63,7 +70,7 @@ writeShellScriptBin "sync-org" ''
           echo "[FAIL] working directory ''${WORKING_DIR} does not exist."
           return 1
       fi
-      cd ''${WORKING_DIR}
+      cd "''${WORKING_DIR}"
 
       # Compare with remote origin/master, return if no need to sync.
       git fetch
@@ -80,4 +87,5 @@ writeShellScriptBin "sync-org" ''
   }
 
   sync_org::main
-''
+  '';
+}

@@ -15,6 +15,7 @@ in {
     extraConfig = {
       pull.rebase = true;
       init.defaultBranch = "master";
+      advice.addIgnoredFile = false;
     };
   };
 }
