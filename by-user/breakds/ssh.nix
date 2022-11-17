@@ -34,6 +34,19 @@
         hostname = "10.77.1.121";
       };
 
+      "samaritan-home" = {
+        hostname = "10.77.1.185";
+        localForwards = [
+          {
+            bind.port = 8888;
+            host.address = "localhost";
+            host.port = 8888;
+          }
+        ];
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
       "into-samaritan" = {
         hostname = "10.77.1.185";
         proxyJump = "www.breakds.org";
