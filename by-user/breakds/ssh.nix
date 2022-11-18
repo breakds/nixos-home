@@ -34,7 +34,7 @@
         hostname = "10.77.1.121";
       };
 
-      "samaritan-home" = {
+      "malenia-home" = {
         hostname = "10.77.1.185";
         localForwards = [
           {
@@ -47,7 +47,7 @@
         forwardX11Trusted = true;
       };
 
-      "into-samaritan" = {
+      "into-malenia" = {
         hostname = "10.77.1.185";
         proxyJump = "www.breakds.org";
         localForwards = [
