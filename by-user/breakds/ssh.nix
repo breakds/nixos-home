@@ -89,11 +89,27 @@
       "into-gail3" = {
         hostname = "gail3.breakds.org";  # 10.40.0.173
         proxyJump = "zero";
+        forwardX11 = true;
+        forwardX11Trusted = true;
       };
 
       "into-samaritan" = {
         hostname = "samaritan.breakds.org";  # 10.40.1.52
         proxyJump = "zero";
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
+      "gail3" = {
+        hostname = "gail3.breakds.org";  # 10.40.0.173
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
+      "samaritan" = {
+        hostname = "samaritan.breakds.org";  # 10.40.1.52
+        forwardX11 = true;
+        forwardX11Trusted = true;
       };
     };
   };
