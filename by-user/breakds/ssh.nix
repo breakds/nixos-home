@@ -86,8 +86,13 @@
         user = "breakds";
       };
 
-      "gail3" = {
-        hostname = "gail3.breakds.org";
+      "into-gail3" = {
+        hostname = "gail3.breakds.org";  # 10.40.0.173
+        proxyJump = "zero";
+      };
+
+      "into-samaritan" = {
+        hostname = "samaritan.breakds.org";  # 10.40.1.52
         proxyJump = "zero";
       };
     };
