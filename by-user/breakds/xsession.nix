@@ -202,5 +202,12 @@ in {
         };
       };
     };
+
+    # This configures different setup (profile) of monitors.
+    # TODO(breakds): Figure out how to detect HDMI plug-in event and
+    # automatically switch profiles.
+    programs.autorandr = {
+      enable = true;
+    };
   };
 }
