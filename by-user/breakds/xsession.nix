@@ -2,7 +2,7 @@
 
 let cfg = config.home.bds;
 
-
+    lock = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -p";
 
 in {
   options.home.bds = with lib; {
@@ -45,6 +45,7 @@ in {
             "${modifier}+Return" = "exec ${terminal}";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+d" = "exec ${menu}";
+            "${modifier}+Shift+x" = "exec ${lock}";
 
             "${modifier}+j" = "focus left";
             "${modifier}+k" = "focus down";
@@ -177,7 +178,7 @@ in {
               warning = 20.0;
               alert = 10.0;
             }
-            
+
             {
               block = "memory";
               display_type = "memory";
