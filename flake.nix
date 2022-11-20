@@ -31,14 +31,6 @@
         imports = [ ./by-user/breakds ];
       };
       
-      nixosModules.breakds-home-laptop = mkHomeManagerModule {
-        user = "breakds";
-        imports = [
-          ./by-user/breakds
-          ./by-user/breakds/laptop.nix
-        ];
-      };
-      
       nixosModules.cassandra-home = mkHomeManagerModule {
         user = "cassandra";
         imports = [ ./by-user/cassandra ];
@@ -49,14 +41,6 @@
         modules = [
           ./machines/breakds-vm.nix
           self.nixosModules.breakds-home
-        ];
-      };
-      
-      nixosConfigurations.breakds-laptop-vm = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./machines/breakds-vm.nix
-          self.nixosModules.breakds-home-laptop
         ];
       };
       
