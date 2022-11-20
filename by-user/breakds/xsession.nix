@@ -148,13 +148,6 @@ in {
     };
 
     # This will generate $HOME/.config/i3status-rust/config.toml
-    # TODO(breakds): Use laptop configuration which has battery shown.
-    # Will need to handle desktop explicitly in the future.
-    # home.file.".config/i3status-rust/config.toml".source = ./dotfiles/i3status-rust.toml;
-
-    # TODO(breakds): Switch to declaration version when new home-manager
-    # has built-in support for i3status-rust
-    #
     programs.i3status-rust = {
       enable = true;
       bars = {
