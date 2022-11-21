@@ -8,6 +8,10 @@
     ./sync.nix
     ./ssh.nix
   ];
+
+  home.packages = with pkgs; [
+    (pkgs.callPackage ../../pkgs/resurrect {})
+  ];
   
   home.file = {
     ".bashrc".source = ./dotfiles/bashrc;
