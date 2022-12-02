@@ -12,5 +12,7 @@
         "networkmanager"
       ];
     };
+
+    home-manager.users.breakds.home.stateVersion = "22.05"; 
   };
 }

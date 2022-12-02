@@ -13,5 +13,6 @@
         "networkmanager"
       ];
     };
+    home-manager.users.cassandra.home.stateVersion = "22.05";     
   };
 }
