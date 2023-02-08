@@ -2,7 +2,7 @@
 
 let cloneRepo = { source, path } : lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [[ ! -d "$HOME/${path}" ]]; then
-        git clone ${source} $HOME/${path}
+        ${pkgs.git}/bin/git clone ${source} $HOME/${path}
       fi
     '';
 
