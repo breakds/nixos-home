@@ -34,6 +34,10 @@
         hostname = "10.77.1.121";
       };
 
+      "octavian" = {
+        hostname = "10.77.1.130";
+      };
+
       "malenia-home" = {
         hostname = "10.77.1.185";
         localForwards = [
