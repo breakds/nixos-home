@@ -116,6 +116,7 @@
         hostname = "39.105.219.118";  # 10.40.1.52
         proxyJump = "armlet";
         port = 50022;
+        user = "yiqing.yang";
         forwardX11 = true;
         forwardX11Trusted = true;
       };
