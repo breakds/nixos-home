@@ -30,10 +30,6 @@
         proxyJump = "sisyphus";
       };
 
-      "richelieu" = {
-        hostname = "10.77.1.121";
-      };
-
       "octavian" = {
         hostname = "10.77.1.130";
       };
@@ -112,6 +108,13 @@
 
       "samaritan" = {
         hostname = "samaritan.breakds.org";  # 10.40.1.52
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
+      "into-ali" = {
+        hostname = "39.105.219.118";  # 10.40.1.52
+        proxyJump = "armlet";
         forwardX11 = true;
         forwardX11Trusted = true;
       };
