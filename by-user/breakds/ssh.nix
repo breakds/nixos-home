@@ -113,7 +113,7 @@
       };
 
       "into-ali" = {
-        hostname = "39.105.219.118";  # 10.40.1.52
+        hostname = "39.105.219.118";
         proxyJump = "armlet";
         port = 50022;
         user = "yiqing.yang";
