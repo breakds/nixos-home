@@ -30,6 +30,12 @@
         proxyJump = "sisyphus";
       };
 
+      "ares" = {
+        hostname = "192.168.110.105";
+        port = 22;
+        proxyJump = "sisyphus";
+      };
+
       "octavian" = {
         hostname = "10.77.1.130";
       };
