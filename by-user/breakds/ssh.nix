@@ -87,21 +87,21 @@
         user = "yiqing.yang";
       };
 
-      "armlet" = {
-        hostname = "10.77.1.188";
+      "limbius" = {
+        hostname = "10.77.1.193";
         user = "breakds";
       };
 
       "into-gail3" = {
         hostname = "gail3.breakds.org";  # 10.40.0.173
-        proxyJump = "armlet";
+        proxyJump = "limbius";
         forwardX11 = true;
         forwardX11Trusted = true;
       };
 
       "into-samaritan" = {
         hostname = "samaritan.breakds.org";  # 10.40.1.52
-        proxyJump = "armlet";
+        proxyJump = "limbius";
         forwardX11 = true;
         forwardX11Trusted = true;
       };
@@ -120,7 +120,7 @@
 
       "into-ali" = {
         hostname = "39.105.219.118";
-        proxyJump = "armlet";
+        proxyJump = "limbius";
         port = 50022;
         user = "yiqing.yang";
         forwardX11 = true;
