@@ -1,11 +1,12 @@
 { pkgs, lib, ... }:
 
-# TODO(breakds): The cloneRepo script has the problem that git
-# requries ssh, but ssh might not be present. This can happen when the
-# if condition is true (i.e. usually happen on a clean installation).
+# 1. Placed after `writeBoundary` because the block may have side
+#    effect of creating new files.
+#
+# 2. Need to specify a ssh binary to use
 let cloneRepo = { source, path } : lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [[ ! -d "$HOME/${path}" ]]; then
-        ${pkgs.git}/bin/git clone ${source} $HOME/${path}
+        GIT_SSH_COMMAND=${pkgs.openssh}/bin/ssh ${pkgs.git}/bin/git clone ${source} $HOME/${path}
       fi
     '';
 
