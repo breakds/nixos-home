@@ -4,8 +4,6 @@ let mkBMBJ = ip: {
       hostname = "39.105.219.118";
       port = 50022;
       user = "yiqing.yang";
-      forwardX11 = true;
-      forwardX11Trusted = true;
     };
 
 in {
@@ -136,6 +134,15 @@ in {
       };
 
       "bmbj001" = mkBMBJ "39.105.219.118";
+      "bmbj002" = mkBMBJ "39.106.85.150";
+      "bmbj003" = mkBMBJ "39.107.81.216";
+      "bmbj004" = mkBMBJ "39.105.129.73";
+      "bmbj005" = mkBMBJ "39.105.183.19";
+      "bmbj006" = mkBMBJ "39.107.255.19";
+      "bmbj007" = mkBMBJ "39.105.218.151";
+      "bmbj008" = mkBMBJ "47.94.21.167";
+      "bmbj009" = mkBMBJ "59.110.171.241";
+      "bmbj010" = mkBMBJ "101.201.35.69";
     };
   };
 }
