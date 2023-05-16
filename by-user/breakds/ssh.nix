@@ -8,7 +8,7 @@ let mkBMBJ = ip: {
 
     mkIntoBMBJ = ip: {
       hostname = ip;
-      proxyJump = "limbius";
+      proxyJump = "into-samaritan";
       port = 50022;
       user = "yiqing.yang";
     };
