@@ -1,6 +1,14 @@
 { pkgs, ... }:
 
-{
+let mkBMBJ = ip: {
+      hostname = "39.105.219.118";
+      port = 50022;
+      user = "yiqing.yang";
+      forwardX11 = true;
+      forwardX11Trusted = true;
+    };
+
+in {
   programs.ssh = {
     enable = true;
     hashKnownHosts = true;
@@ -126,6 +134,8 @@
         forwardX11 = true;
         forwardX11Trusted = true;
       };
+
+      "bmbj001" = mkBMBJ "39.105.219.118";
     };
   };
 }
