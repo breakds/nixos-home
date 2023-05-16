@@ -18,6 +18,9 @@ in {
     enable = true;
     hashKnownHosts = true;
     controlMaster = "auto";
+    # The master connection will automatically close if it has been idle for
+    # more than 10 minutes.
+    controlPersist = "10m";
 
     # TODO(breakds): Setup Agent Forwarding
 
