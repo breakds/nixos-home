@@ -134,6 +134,19 @@ in {
         forwardX11Trusted = true;
       };
 
+      "into-radahn" = {
+        hostname = "radahn.breakds.org";  # 10.40.1.104
+        proxyJump = "limbius";
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
+      "radahn" = {
+        hostname = "radahn.breakds.org";  # 10.40.1.104
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
       "into-ali" = {
         hostname = "39.105.219.118";
         proxyJump = "limbius";
