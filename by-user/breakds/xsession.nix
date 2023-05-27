@@ -153,52 +153,87 @@ in {
       bars = {
         bottom = {
           theme = "slick";
-          icons = "awesome";
-          blocks = (lib.lists.optionals cfg.laptopXsession [
-            {
-              block = "backlight";
-              invert_icons = true;
-            }
-          ]) ++ [
+          icons = "awesome6";
+          blocks = [
             {
               block = "disk_space";
-              path = "/";
-              alias = "/";
+              format = " $icon $free / $total ";
+              path = "/home/breakds";
               info_type = "available";
-              format = "{icon} {available} / {total}";
-              unit = "GB";
-              interval = 30;
+              interval = 60;
               warning = 20.0;
               alert = 10.0;
+              alert_unit = "GB";
             }
 
             {
               block = "memory";
-              display_type = "memory";
-              format_mem = "{mem_used}";
+              format = " $icon $mem_used / $mem_total ";
+              warning_mem = 80.0;
+              critical_mem = 95.0;
             }
 
+            { block = "cpu"; }
+
             {
-              block = "cpu";
+              block = "load";
               interval = 1;
-              format = "{utilization}";
+              format = " $icon $1m ";
             }
 
-            {
-              block = "sound";
-            }
+            { block = "sound"; }
 
             {
               block = "time";
-              interval = 30;
-              format = "%a %d/%m %R";
+              interval = 5;
+              format = " $timestamp.datetime(f:'%a %Y/%m/%d %R') ";
             }
-          ] ++ (lib.lists.optionals cfg.laptopXsession [
-            {
-              block = "battery";
-              interval = 15;
-            }
-          ]);
+          ];
+          # blocks = (lib.lists.optionals cfg.laptopXsession [
+          #   {
+          #     block = "backlight";
+          #     invert_icons = true;
+          #   }
+          # ]) ++ [
+          #   {
+          #     block = "disk_space";
+          #     path = "/";
+          #     alias = "/";
+          #     info_type = "available";
+          #     format = "{icon} {available} / {total}";
+          #     unit = "GB";
+          #     interval = 30;
+          #     warning = 20.0;
+          #     alert = 10.0;
+          #   }
+
+          #   {
+          #     block = "memory";
+          #     display_type = "memory";
+          #     format_mem = "{mem_used}";
+          #   }
+
+          #   {
+          #     block = "cpu";
+          #     interval = 1;
+          #     format = "{utilization}";
+          #   }
+
+          #   {
+          #     block = "sound";
+          #   }
+
+          #   {
+          #     block = "time";
+          #     interval = 30;
+          #     format = "%a %d/%m %R";
+          #   }
+          # ] ++ (lib.lists.optionals cfg.laptopXsession [
+          #   {
+          #     block = "battery";
+          #     interval = 15;
+          #   }
+          # ]);
         };
       };
     };
