@@ -152,17 +152,24 @@ in {
       enable = true;
       bars = {
         bottom = {
-          theme = "slick";
+          theme = "bad-wolf";
           icons = "awesome6";
-          blocks = [
+          blocks = (lib.lists.optionals cfg.laptopXsession [
+            {
+              block = "backlight";
+              invert_icons = true;
+            }
+          ]) ++ [
             {
               block = "disk_space";
               format = " $icon $free / $total ";
-              path = "/home/breakds";
+              # TODO(breakds): Setting this to "/" does not seem to work well
+              # because free is actually computed incorrectly.
+              path = "/";
               info_type = "available";
               interval = 60;
-              warning = 20.0;
-              alert = 10.0;
+              warning = 50.0;
+              alert = 30.0;
               alert_unit = "GB";
             }
 
@@ -188,52 +195,12 @@ in {
               interval = 5;
               format = " $timestamp.datetime(f:'%a %Y/%m/%d %R') ";
             }
-          ];
-          # blocks = (lib.lists.optionals cfg.laptopXsession [
-          #   {
-          #     block = "backlight";
-          #     invert_icons = true;
-          #   }
-          # ]) ++ [
-          #   {
-          #     block = "disk_space";
-          #     path = "/";
-          #     alias = "/";
-          #     info_type = "available";
-          #     format = "{icon} {available} / {total}";
-          #     unit = "GB";
-          #     interval = 30;
-          #     warning = 20.0;
-          #     alert = 10.0;
-          #   }
-
-          #   {
-          #     block = "memory";
-          #     display_type = "memory";
-          #     format_mem = "{mem_used}";
-          #   }
-
-          #   {
-          #     block = "cpu";
-          #     interval = 1;
-          #     format = "{utilization}";
-          #   }
-
-          #   {
-          #     block = "sound";
-          #   }
-
-          #   {
-          #     block = "time";
-          #     interval = 30;
-          #     format = "%a %d/%m %R";
-          #   }
-          # ] ++ (lib.lists.optionals cfg.laptopXsession [
-          #   {
-          #     block = "battery";
-          #     interval = 15;
-          #   }
-          # ]);
+          ] ++ (lib.lists.optionals cfg.laptopXsession [
+            {
+              block = "battery";
+              interval = 15;
+            }
+          ]);
         };
       };
     };
