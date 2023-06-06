@@ -34,6 +34,12 @@
     ];
   };
 
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     
