@@ -4,6 +4,7 @@
   programs.wezterm = {
     enable = true;
 
+    # Partly designed by ChatGPT.
     colorSchemes = {
       BreakDrucula = {
         ansi = [
@@ -11,8 +12,8 @@
           "#6272a4" "#bd93f9" "#8be9fd" "#f8f8f2"
         ];
         brights = [
-          "#444444" "#FF7575" "#6CFF97" "#FFFF00"
-          "#7485C6" "#D9A6FF" "#A6FAFF" "#FCFCFC"
+          "#777777" "#D04A4A" "#46D56B" "#DDDC75"
+          "#8294D1" "#AA82D6" "#9CF1F1" "#DEDBD7"
         ];
         background = "#282A36";
         cursor_bg = "#BEAF8A";
