@@ -27,7 +27,7 @@ in {
         # Use Windows/Command key as the modifier
         config = rec {
           modifier = "Mod4";
-          terminal = "${pkgs.alacritty}/bin/alacritty";
+          terminal = "${config.programs.wezterm.package}/bin/wezterm";
           menu = "${pkgs.rofi}/bin/rofi -show drun";
 
           fonts = {

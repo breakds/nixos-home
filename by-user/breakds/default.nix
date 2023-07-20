@@ -3,8 +3,8 @@
 {
   imports = [
     ./git.nix
+    ./wezterm.nix
     ./xsession.nix
-    ./alacritty.nix
     ./sync.nix
     ./ssh.nix
   ];
