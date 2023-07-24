@@ -10,6 +10,14 @@ let cloneRepo = { source, path } : lib.hm.dag.entryAfter ["writeBoundary"] ''
       fi
     '';
 
+    clonePythonTypeStubs = { source, path } : lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [[ ! -d "$HOME/.local/share/pytypestubs/${path}" ]]; then
+        mkdir -p $HOME/.local/share/pytypestubs
+        GIT_SSH_COMMAND=${pkgs.openssh}/bin/ssh ${pkgs.git}/bin/git clone ${source} \
+          $HOME/.local/share/pytypestubs/${path}
+      fi
+    '';    
+
     sync-org = pkgs.callPackage ../../pkgs/sync-org {};
 
 in {
@@ -26,6 +34,16 @@ in {
   home.activation.initOrg = cloneRepo {
     source = "git@github.com:breakds/org.git";
     path = "org";
+  };
+
+  home.activation.cloneTypeshed = clonePythonTypeStubs {
+    source = "https://github.com/python/typeshed";
+    path = "typeshed";
+  };
+
+  home.activation.cloneMSPythonTypeStubs = clonePythonTypeStubs {
+    source = "https://github.com/microsoft/python-type-stubs";
+    path = "python-type-stubs";
   };
 
   systemd.user = {
