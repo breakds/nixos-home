@@ -35,6 +35,11 @@
         user = "cassandra";
         imports = [ ./by-user/cassandra ];
       };
+
+      nixosModules.horizon-home = mkHomeManagerModule {
+        user = "horizon";
+        imports = [ ./by-user/horizon ];
+      };
       
       nixosConfigurations.breakds-vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
