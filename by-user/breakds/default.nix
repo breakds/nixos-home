@@ -12,10 +12,13 @@
   home.packages = with pkgs; [
     (pkgs.callPackage ../../pkgs/resurrect {})
   ];
-  
+
   home.file = {
     ".bashrc".source = ./dotfiles/bashrc;
     ".inputrc".source = ./dotfiles/inputrc;
+    ".gdbinit".text = ''
+      set auto-load safe-path /nix/store
+    '';
   };
 
   programs.direnv = {
@@ -43,7 +46,7 @@
 
   programs.zsh = {
     enable = true;
-    
+
     oh-my-zsh = {
       enable = true;
       theme = "ys";
@@ -66,7 +69,7 @@
           sha256 = "sha256-KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
         };
       }
-      
+
       {
         # will source nix-zsh-completions.plugin.zsh
         name = "nix-zsh-completions";
