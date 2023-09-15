@@ -178,6 +178,8 @@ in {
       "into-bmbj010" = mkIntoBMBJ "101.201.35.69";
       "bmbj011" = mkBMBJ "101.200.195.73";
       "into-bmbj011" = mkIntoBMBJ "101.200.195.73";
+      "bmbj012" = mkBMBJ "123.56.239.29";
+      "into-bmbj012" = mkIntoBMBJ "123.56.239.29";
     };
   };
 }
