@@ -83,6 +83,20 @@ in {
         forwardX11Trusted = true;
       };
 
+      "tailto-malenia" = {
+        hostname = "10.77.1.185";
+        proxyJump = "100.118.233.13";  # via tailscale exit node
+        localForwards = [
+          {
+            bind.port = 8888;
+            host.address = "localhost";
+            host.port = 8888;
+          }
+        ];
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
+
       "into-lorian" = {
         hostname = "10.77.1.128";
         proxyJump = "www.breakds.org";
