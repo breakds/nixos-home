@@ -41,7 +41,7 @@ in {
       };
 
       "kami" = {
-        hostname = "192.168.110.111";
+        hostname = "192.168.110.134";
         port = 22;
         proxyJump = "sisyphus";
       };
