@@ -35,7 +35,7 @@ in {
       };
 
       "bishop" = {
-        hostname = "192.168.110.161";
+        hostname = "192.168.110.124";
         port = 22;
         proxyJump = "sisyphus";
       };
