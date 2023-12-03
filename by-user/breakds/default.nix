@@ -113,7 +113,7 @@
       )
 
       # Be fancy!
-      neofetch
+      neofetch --disable icons --disable theme --disable wm --disable resolution
     '';
   };
 }
