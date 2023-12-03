@@ -83,7 +83,7 @@
     ];
 
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    SyntaxHighlighting.enable = true;
     defaultKeymap = "emacs";
 
     shellAliases = {
