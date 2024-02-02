@@ -25,6 +25,7 @@ in {
       pull.rebase = true;
       init.defaultBranch = "master";
       advice.addIgnoredFile = false;
+      http.version = "HTTP/1.1";
     };
   };
 }
