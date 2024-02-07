@@ -200,6 +200,27 @@ in {
       "into-bmbj011" = mkIntoBMBJ "101.200.195.73";
       "bmbj012" = mkBMBJ "123.56.239.29";
       "into-bmbj012" = mkIntoBMBJ "123.56.239.29";
+
+      "bmbj013" = mkBMBJ "123.56.73.0";
+      "into-bmbj013" = mkIntoBMBJ "123.56.73.0";
+      "bmbj014" = mkBMBJ "101.201.208.31";
+      "into-bmbj014" = mkIntoBMBJ "101.201.208.31";
+      "bmbj015" = mkBMBJ "47.93.183.132";
+      "into-bmbj015" = mkIntoBMBJ "47.93.183.132";
+      "bmbj016" = mkBMBJ "101.201.48.157";
+      "into-bmbj016" = mkIntoBMBJ "101.201.48.157";
+      "bmbj017" = mkBMBJ "101.200.139.34";
+      "into-bmbj017" = mkIntoBMBJ "101.200.139.34";
+      "bmbj018" = mkBMBJ "39.107.57.123";
+      "into-bmbj018" = mkIntoBMBJ "39.107.57.123";
+      "bmbj019" = mkBMBJ "101.201.211.109";
+      "into-bmbj019" = mkIntoBMBJ "101.201.211.109";
+      "bmbj020" = mkBMBJ "47.93.120.80";
+      "into-bmbj020" = mkIntoBMBJ "47.93.120.80";
+      "bmbj021" = mkBMBJ "47.93.183.3";
+      "into-bmbj021" = mkIntoBMBJ "47.93.183.3";
+      "bmbj022" = mkBMBJ "59.110.19.0";
+      "into-bmbj022" = mkIntoBMBJ "59.110.19.0";
     };
   };
 }
