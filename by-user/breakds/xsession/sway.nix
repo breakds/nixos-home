@@ -143,5 +143,24 @@ in {
         };
       };
     };
+
+    programs.rofi = {
+      enable = true;
+      font = "Monospace 8";
+
+      extraConfig = {
+        case-sensitive = false;
+        display-drun = "Apps:";
+        modi = [ "drun" "run" ];
+        show-icons = false;
+      };
+
+      # TODO(breakds): Add password store support
+
+      plugins = with pkgs; [
+        rofi-bluetooth
+        rofi-pulse-select
+      ];
+    };
   };
 }

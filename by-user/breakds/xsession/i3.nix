@@ -1,3 +1,5 @@
+# reference: https://git.sr.ht/~hervyqa/swayhome/tree/HEAD/item/home/wayland/sway.nix
+
 { config, lib, pkgs, ... }:
 
 let cfg = config.home.bds;
