@@ -28,7 +28,7 @@ in {
       settings = {
         mainBar = {
           layer = "bottom";
-          position = "top";
+          position = "bottom";
           height = 24;
           spacing = 0;
           output = [
@@ -65,6 +65,8 @@ in {
           };
           "sway/workspaces" = {
             on-click = "activate";
+            all-outputs = true;
+            disable-scroll = true;
             sort-by-number = true;
             format = "{icon}";
             format-icons = {
@@ -79,26 +81,7 @@ in {
               "9" = "九";
               "10" = "十";
             };
-            persistent-workspaces = let
-              first = [
-                "eDP-1"
-                "VGA-1"
-              ];
-              second = [
-                "DP-1" "DP-2" "DP-3" "DP-4"
-                "HDMI-A-1" "HDMI-A-2"
-              ];
-            in {
-              "1" = first;
-              "2" = first;
-              "3" = first;
-              "4" = first;
-              "5" = first;
-              "6" = second;
-              "7" = second;
-              "8" = second;
-              "9" = second;
-            };
+            persistent-workspaces = {};
           };
           "sway/scratchpad" = {
             format = "{icon} {count}";
@@ -284,17 +267,17 @@ in {
 
             #workspaces button {
               padding: 0 5px;
-              background-color: transparent;
-  }
+              background-color: #D0E2FF;
+            }
 
             #workspaces button:hover {
               background: rgba(0, 0, 0, 0.2);
-}
+            }
 
             #workspaces button.focused {
               background-color: ${regular4};
               box-shadow: inset 0 -3px ${foreground};
-}
+            }
 
             #workspaces button.urgent {
               background-color: ${regular1};
