@@ -124,6 +124,7 @@ in {
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+r" = "restart";
+          "${modifier}+Shift+e" = "exec swaymsg exit, mode default";
           "${modifier}+r" = "mode resize";
         };
 
