@@ -8,6 +8,7 @@ in {
   imports = [
     ./i3.nix
     ./sway.nix
+    ./waybar.nix
   ];
 
   options.home.bds = with lib; {
