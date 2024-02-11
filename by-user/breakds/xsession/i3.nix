@@ -8,6 +8,8 @@ let cfg = config.home.bds;
     
 in {
   config = lib.mkIf (cfg.windowManager == "i3") {
+    xsession.enable = true;
+    xsession.scriptPath = ".hm-xsession";
     xsession.windowManager.i3 = {
       enable = true;
 

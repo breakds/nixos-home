@@ -26,9 +26,4 @@ in {
       default = false;
     };
   };
-
-  config = {
-    xsession.enable = true;
-    xsession.scriptPath = ".hm-xsession";
-  };
 }
