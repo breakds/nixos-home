@@ -2,8 +2,6 @@
 
 let cfg = config.home.bds;
 
-    lock = "${pkgs.swaylock-effects}/bin/swaylock-effects --screenshots --clock";
-
 in {
   config = lib.mkIf (cfg.windowManager == "sway") {
     wayland.windowManager.sway = {
@@ -129,9 +127,6 @@ in {
           "${modifier}+Shift+0" =
             "move container to workspace number 10";
 
-          "${modifier}+Shift+c" = "reload";
-          "${modifier}+Shift+r" = "restart";
-          "${modifier}+Shift+e" = "exec swaymsg exit, mode default";
           "${modifier}+x" = "mode session";
           "${modifier}+r" = "mode resize";
         };
@@ -154,9 +149,12 @@ in {
             Escape = "mode default";
             Return = "mode default";
             "e" = "exec swaymsg exit, mode default";
-            "l" = "exec ${lock}, mode default";
+            "l" = "exec swaylock, mode default";
+            "c" = "reload";
+            "r" = "exec systemctl reboot, mode default";
+            "p" = "exec systemctl poweroff, mode default";
           };
-          
+
         };
       };
 
@@ -195,5 +193,61 @@ in {
         rofi-pulse-select
       ];
     };
+
+    # https://git.sr.ht/~hervyqa/swayhome/tree/HEAD/item/home/programs/swaylock.nix
+    programs.swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
+      settings = {
+        bs-hl-color = "F2D5CF";
+        caps-lock-bs-hl-color = "F2D5CF";
+        caps-lock-key-hl-color = "A6D189";
+        color = "303446";
+        inside-caps-lock-color = "00000000";
+        inside-clear-color = "00000000";
+        inside-color = "00000000";
+        inside-ver-color = "00000000";
+        inside-wrong-color = "00000000";
+        key-hl-color = "A6D189";
+        layout-bg-color = "00000000";
+        layout-border-color = "00000000";
+        layout-text-color = "C6D0F5";
+        line-caps-lock-color = "00000000";
+        line-clear-color = "00000000";
+        line-color = "00000000";
+        line-ver-color = "00000000";
+        line-wrong-color = "00000000";
+        ring-caps-lock-color = "EF9F76";
+        ring-clear-color = "F2D5CF";
+        ring-color = "BABBF1";
+        ring-ver-color = "8CAAEE";
+        ring-wrong-color = "EA999C";
+        separator-color = "00000000";
+        text-caps-lock-color = "EF9F76";
+        text-clear-color = "F2D5CF";
+        text-color = "C6D0F5";
+        text-ver-color = "8CAAEE";
+        text-wrong-color = "EA999C";
+        font = "Monospace";
+        font-size = 12;
+        disable-caps-lock-text = true;
+        ignore-empty-password = true;
+        indicator = true;
+        indicator-caps-lock = true;
+        indicator-radius = 50;
+        indicator-thickness = 10;
+        screenshots = true;
+        clock = true;
+        effect-blur = "7x5";
+        effect-vignette = "0.5:0.5";
+        grace = "2";
+        fade-in = "0.2";
+      };
+    };
+
+    home.packages = with pkgs; [
+      wl-clipboard
+      mako
+    ];
   };
 }
