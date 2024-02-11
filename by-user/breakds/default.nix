@@ -4,7 +4,7 @@
   imports = [
     ./git.nix
     ./wezterm.nix
-    ./xsession.nix
+    ./xsession
     ./sync.nix
     ./ssh.nix
   ];
