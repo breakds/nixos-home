@@ -2,21 +2,21 @@
 
 let cfg = config.home.bds;
 
-    lock = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -p";
+    lock = "${pkgs.swaylock-effects}/bin/swaylock-effects --screenshots --clock";
     
 in {
-  config = lib.mkIf (cfg.windowManager == "i3") {
-    xsession.windowManager.i3 = {
+  config = lib.mkIf (cfg.windowManager == "sway") {
+    wayland.windowManager.sway = {
       enable = true;
+      wrapperFeatures.gtk = true;
 
-      # Use the i3-gaps instead of the stock i3
-      package = pkgs.i3-gaps;
+      # package = pkgs.swayfx;
 
       # Use Windows/Command key as the modifier
       config = rec {
         modifier = "Mod4";
         terminal = "${config.programs.wezterm.package}/bin/wezterm";
-        menu = "${pkgs.rofi}/bin/rofi -show drun";
+        menu = "${pkgs.wofi}/bin/wofi --show drun";
 
         fonts = {
           names = [ "RobotoMono" "FontAwesome" ];
@@ -107,9 +107,6 @@ in {
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+r" = "restart";
-          "${modifier}+Shift+e" =
-            "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
-
           "${modifier}+r" = "mode resize";
         };
 
@@ -129,66 +126,9 @@ in {
         };
 
         bars = [{
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml";
+          fonts.size = 15.0;
+          position = "bottom";
         }];
-      };
-    };
-
-    # This will generate $HOME/.config/i3status-rust/config.toml
-    programs.i3status-rust = {
-      enable = true;
-      bars = {
-        bottom = {
-          theme = "bad-wolf";
-          icons = "awesome6";
-          blocks = (lib.lists.optionals cfg.laptopXsession [
-            {
-              block = "backlight";
-              invert_icons = true;
-            }
-          ]) ++ [
-            {
-              block = "disk_space";
-              format = " $icon $free / $total ";
-              # TODO(breakds): Setting this to "/" does not seem to work well
-              # because free is actually computed incorrectly.
-              path = "/";
-              info_type = "available";
-              interval = 60;
-              warning = 50.0;
-              alert = 30.0;
-              alert_unit = "GB";
-            }
-
-            {
-              block = "memory";
-              format = " $icon $mem_used / $mem_total ";
-              warning_mem = 80.0;
-              critical_mem = 95.0;
-            }
-
-            { block = "cpu"; }
-
-            {
-              block = "load";
-              interval = 1;
-              format = " $icon $1m ";
-            }
-
-            { block = "sound"; }
-
-            {
-              block = "time";
-              interval = 5;
-              format = " $timestamp.datetime(f:'%a %Y/%m/%d %R') ";
-            }
-          ] ++ (lib.lists.optionals cfg.laptopXsession [
-            {
-              block = "battery";
-              interval = 15;
-            }
-          ]);
-        };
       };
     };
   };

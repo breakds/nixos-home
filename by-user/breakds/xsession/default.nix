@@ -7,8 +7,9 @@ let cfg = config.home.bds;
 in {
   imports = [
     ./i3.nix
+    ./sway.nix
   ];
-  
+
   options.home.bds = with lib; {
     windowManager = mkOption {
       type = types.enum [ "i3" "sway" ];
@@ -17,11 +18,16 @@ in {
         Which window manager to use by the home manager session.
       '';
     };
-    
+
     laptopXsession = mkOption {
       type = types.bool;
       description = "When set to true, enable graphical settings for laptop";
       default = false;
     };
+  };
+
+  config = {
+    xsession.enable = true;
+    xsession.scriptPath = ".hm-xsession";
   };
 }
