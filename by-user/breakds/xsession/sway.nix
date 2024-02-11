@@ -3,7 +3,7 @@
 let cfg = config.home.bds;
 
     lock = "${pkgs.swaylock-effects}/bin/swaylock-effects --screenshots --clock";
-    
+
 in {
   config = lib.mkIf (cfg.windowManager == "sway") {
     wayland.windowManager.sway = {
@@ -16,7 +16,15 @@ in {
       config = rec {
         modifier = "Mod4";
         terminal = "${config.programs.wezterm.package}/bin/wezterm";
-        menu = "${pkgs.wofi}/bin/wofi --show drun";
+        menu = "${pkgs.rofi}/bin/rofi -show drun";
+
+        bars = [{
+          command = "${pkgs.waybar}/bin/waybar";
+        }];
+
+        focus = {
+          forceWrapping = false;
+        };
 
         fonts = {
           names = [ "RobotoMono" "FontAwesome" ];
@@ -27,6 +35,15 @@ in {
           inner = 6;
           smartGaps = true;
           smartBorders = "on";
+        };
+
+        startup = [
+          { command = "${pkgs.autotiling}/bin/autotiling"; }
+          { command = "${pkgs.wpaperd}/bin/wpaperd"; }
+        ];
+
+        window = {
+          titlebar = true;
         };
 
         keybindings = lib.mapAttrs (binding: lib.mkOptionDefault) {
@@ -124,11 +141,6 @@ in {
             "Return" = "mode default";
           };
         };
-
-        bars = [{
-          fonts.size = 15.0;
-          position = "bottom";
-        }];
       };
     };
   };
