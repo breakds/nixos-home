@@ -19,6 +19,7 @@ in {
 
         bars = [{
           command = "${pkgs.waybar}/bin/waybar";
+          position = "bottom";
         }];
 
         focus = {
