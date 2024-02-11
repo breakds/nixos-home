@@ -239,20 +239,20 @@ in {
             /*
             window#waybar.empty {
               background-color: transparent;
-      }
+            }
             window#waybar.solo {
               background-color: ${regular4};
-    }
+            }
             */
 
             window#waybar.termite {
               background-color: ${regular4};
-      }
+            }
 
             window#waybar.chromium {
               background-color: ${regular4};
               border: none;
-    }
+            }
 
             button {
               box-shadow: inset 0 -3px transparent;

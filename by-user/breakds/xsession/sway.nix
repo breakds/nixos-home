@@ -56,7 +56,8 @@ in {
           "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
           "${modifier}+d" = "exec ${menu}";
-          "${modifier}+Shift+x" = "exec ${lock}";
+          "${modifier}+Shift+p" = "exec ${pkgs.rofi-pass-wayland}/bin/rofi-pass";
+          "${modifier}+Shift+b" = "exec ${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";
 
           "${modifier}+j" = "focus left";
           "${modifier}+k" = "focus down";
@@ -131,11 +132,14 @@ in {
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+r" = "restart";
           "${modifier}+Shift+e" = "exec swaymsg exit, mode default";
+          "${modifier}+x" = "mode session";
           "${modifier}+r" = "mode resize";
         };
 
         modes = {
-          "resize" = {
+          resize = {
+            Escape = "mode default";
+            Return = "mode default";
             "j" = "resize shrink width 10 px or 10 ppt";
             "k" = "resize grow height 10 px or 10 ppt";
             "l" = "resize shrink height 10 px or 10 ppt";
@@ -144,8 +148,26 @@ in {
             "Down" = "resize grow height 10 px or 10 ppt";
             "Up" = "resize shrink height 10 px or 10 ppt";
             "Right" = "resize grow width 10 px or 10 ppt";
-            "Escape" = "mode default";
-            "Return" = "mode default";
+          };
+
+          session = {
+            Escape = "mode default";
+            Return = "mode default";
+            "e" = "exec swaymsg exit, mode default";
+            "l" = "exec ${lock}, mode default";
+          };
+          
+        };
+      };
+
+      swaynag = {
+        enable = true;
+        settings = {
+          "<config>" = {
+            edge = "top";
+            font = "Monospace 8";
+            background = "af69ef";
+            message-padding = 10;
           };
         };
       };
@@ -162,7 +184,11 @@ in {
         show-icons = false;
       };
 
-      # TODO(breakds): Add password store support
+      pass = {
+        enable = true;
+        package = pkgs.rofi-pass-wayland;
+        stores = [ "~/.password-store" ];
+      };
 
       plugins = with pkgs; [
         rofi-bluetooth
