@@ -8,7 +8,6 @@ in {
   config = lib.mkIf (cfg.windowManager == "sway") {
     wayland.windowManager.sway = {
       enable = true;
-      wrapperFeatures.gtk = true;
 
       # package = pkgs.swayfx;
 
@@ -35,6 +34,12 @@ in {
           inner = 6;
           smartGaps = true;
           smartBorders = "on";
+        };
+
+        output = {
+          eDP-1 = {
+            scale = "1";
+          };
         };
 
         startup = [
