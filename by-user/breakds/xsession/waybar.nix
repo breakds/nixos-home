@@ -77,7 +77,7 @@ in {
               "7" = "七";
               "8" = "八";
               "9" = "九";
-              "0" = "十";
+              "10" = "十";
             };
             persistent-workspaces = let
               first = [
