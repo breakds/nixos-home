@@ -245,6 +245,16 @@ in {
       };
     };
 
+    programs.wpaperd = {
+      enable = true;
+      settings.default = {
+        duration = "2m";
+        path = "/home/breakds/Pictures/wallpapers";
+        sortign = "ascending";
+        apply-shadow = false;
+      };
+    };
+
     home.packages = with pkgs; [
       wl-clipboard
       mako
