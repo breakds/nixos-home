@@ -143,7 +143,7 @@ in {
       enable = true;
       bars = {
         bottom = {
-          theme = "bad-wolf";
+          theme = "dracula";
           icons = "awesome6";
           blocks = (lib.lists.optionals cfg.laptopXsession [
             {
@@ -153,7 +153,7 @@ in {
           ]) ++ [
             {
               block = "disk_space";
-              format = " $icon $free / $total ";
+              format = " $icon $free.eng(w:4) / $total ";
               # TODO(breakds): Setting this to "/" does not seem to work well
               # because free is actually computed incorrectly.
               path = "/";
