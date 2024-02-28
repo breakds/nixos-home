@@ -52,6 +52,12 @@ in {
         proxyJump = "sisyphus";
       };
 
+      "hades" = {
+        hostname = "192.168.110.104";
+        port = 22;
+        proxyJump = "sisyphus";
+      };
+
       "datahub" = {
         hostname = "192.168.110.223";
         port = 22;
