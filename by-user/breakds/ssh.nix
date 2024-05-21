@@ -227,6 +227,25 @@ in {
       "into-bmbj021" = mkIntoBMBJ "47.93.183.3";
       "bmbj022" = mkBMBJ "59.110.19.0";
       "into-bmbj022" = mkIntoBMBJ "59.110.19.0";
+
+      "bmbj023" = mkBMBJ "8.147.107.42";
+      "into-bmbj023" = mkIntoBMBJ "8.147.107.42";
+      "bmbj024" = mkBMBJ "60.205.183.73";
+      "into-bmbj024" = mkIntoBMBJ "60.205.183.73";
+      "bmbj025" = mkBMBJ "101.201.57.70";
+      "into-bmbj025" = mkIntoBMBJ "101.201.57.70";
+      "bmbj026" = mkBMBJ "39.105.197.206";
+      "into-bmbj026" = mkIntoBMBJ "39.105.197.206";
+      "bmbj027" = mkBMBJ "47.94.46.127";
+      "into-bmbj027" = mkIntoBMBJ "47.94.46.127";
+      "bmbj028" = mkBMBJ "112.125.88.36";
+      "into-bmbj028" = mkIntoBMBJ "112.125.88.36";
+      "bmbj029" = mkBMBJ "39.105.102.23";
+      "into-bmbj029" = mkIntoBMBJ "39.105.102.23";
+      "bmbj030" = mkBMBJ "123.57.242.112";
+      "into-bmbj030" = mkIntoBMBJ "123.57.242.112";
+      "bmbj031" = mkBMBJ "182.92.104.37";
+      "into-bmbj031" = mkIntoBMBJ "182.92.104.37";
     };
   };
 }
