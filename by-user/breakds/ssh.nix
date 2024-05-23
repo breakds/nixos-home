@@ -33,8 +33,7 @@ in {
       # the network github will hang there for a long period. Turning off the
       # control master can achieve this.
       "github.com" = {
-        controlMaster = "no";
-        controlPersist = "no";
+        controlPersist = "10s";
       };
 
       "sisyphus" = {
