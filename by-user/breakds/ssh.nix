@@ -29,6 +29,14 @@ in {
         identityFile = "~/.ssh/breakds_samaritan";
       };
 
+      # I want transient ssh connection for github since otherwise when I switch
+      # the network github will hang there for a long period. Turning off the
+      # control master can achieve this.
+      "github.com" = {
+        controlMaster = "no";
+        controlPersist = "no";
+      };
+
       "sisyphus" = {
         hostname = "161.189.132.45";
         port = 9000;
