@@ -20,20 +20,17 @@ in {
     controlMaster = "auto";
     # The master connection will automatically close if it has been idle for
     # more than 10 minutes.
-    controlPersist = "10m";
+    #
+    # I want transient ssh connection for github since otherwise when I switch
+    # the network github will hang there for a long period. Turning off the
+    # control master can achieve this.
+    controlPersist = "30s";
 
     # TODO(breakds): Setup Agent Forwarding
 
     matchBlocks = {
       "*" = {
         identityFile = "~/.ssh/breakds_samaritan";
-      };
-
-      # I want transient ssh connection for github since otherwise when I switch
-      # the network github will hang there for a long period. Turning off the
-      # control master can achieve this.
-      "github.com" = {
-        controlPersist = "10s";
       };
 
       "sisyphus" = {
