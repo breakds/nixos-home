@@ -256,6 +256,7 @@ in {
     };
 
     home.packages = with pkgs; [
+      wayland-utils
       wl-clipboard
       mako
     ];
