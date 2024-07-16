@@ -36,7 +36,7 @@ in {
 
         output = {
           eDP-1 = {
-            scale = "1";
+            scale = "1.2";
             adaptive_sync = "on";
           };
         };
