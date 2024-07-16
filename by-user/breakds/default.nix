@@ -113,7 +113,7 @@
       )
 
       # Be fancy!
-      neofetch --disable icons --disable theme --disable wm --disable resolution
+      ${pkgs.fastfetch}/bin/fastfetch
     '';
   };
 }
