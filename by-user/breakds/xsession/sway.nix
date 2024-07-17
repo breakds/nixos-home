@@ -36,8 +36,19 @@ in {
 
         output = {
           eDP-1 = {
-            scale = "1.2";
+            scale = "1.0";
             adaptive_sync = "on";
+          };
+        };
+
+        input = {
+          # Although we specify "*" here, the following settings will only be
+          # effective for the libinput compatible touchpads.
+          "*" = {
+            click_method = "clickfinger";  # 1 finger = left, 2 finger = right
+            tap = "enabled";               # tapping as click
+            dwt = "enabled";               # disable while typing
+            dwtp = "enabled";              # disable while trackpointing
           };
         };
 
