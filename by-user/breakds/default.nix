@@ -14,7 +14,6 @@
   ];
 
   home.file = {
-    ".bashrc".source = ./dotfiles/bashrc;
     ".inputrc".source = ./dotfiles/inputrc;
     ".gdbinit".text = ''
       set auto-load safe-path /nix/store
@@ -24,6 +23,7 @@
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
     nix-direnv = {
       enable = true;
     };
@@ -42,6 +42,18 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
     defaultOptions = [ "--height 50%" "--border" ];
+  };
+
+  programs.bash = {
+    enable = true;
+
+    sessionVariables = {
+      EDITOR = "emacs";
+    };
+
+    bashrcExtra = ''
+      ${pkgs.fastfetch}/bin/fastfetch
+    '';
   };
 
   programs.zsh = {
@@ -98,11 +110,6 @@
         export EDITOR='emacs'
       else
         export EDITOR='emacs'
-      fi
-
-      # Setting up direnv. Actually I am not entirely sure this is needed now.
-      if [ -x "$(command -v direnv)" ]; then
-        eval "$(direnv hook zsh)"
       fi
 
       # I do not like accepting autosuggestions with right arrow (i.e.
