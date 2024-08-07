@@ -260,6 +260,7 @@ in {
     };
 
     home.packages = with pkgs; [
+      waybar
       wayland-utils
       wl-clipboard
       mako
