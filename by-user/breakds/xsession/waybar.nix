@@ -31,9 +31,6 @@ in {
           position = "bottom";
           height = 24;
           spacing = 0;
-          output = [
-            "eDP-1"
-          ];
           modules-left = [
             "sway/workspaces"
             "sway/mode"
