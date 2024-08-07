@@ -34,18 +34,6 @@ in {
           smartBorders = "on";
         };
 
-        output = {
-          eDP-1 = {
-            scale = "1.0";
-            adaptive_sync = "on";
-            pos = "0 2160";
-          };
-          DP-3 = {
-            scale = "1.0";
-            pos = "0 0";
-          };
-        };
-
         input = {
           # Although we specify "*" here, the following settings will only be
           # effective for the libinput compatible touchpads.
