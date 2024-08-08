@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
-let mkBMBJ = ip: {
+let cfg = config.home.bds;
+
+    mkBMBJ = ip: {
       hostname = ip;
       port = 50022;
       user = "yiqing.yang";
@@ -13,22 +15,19 @@ let mkBMBJ = ip: {
       user = "yiqing.yang";
     };
 
-in {
-  programs.ssh = {
-    enable = true;
-    hashKnownHosts = true;
-    controlMaster = "auto";
-    # The master connection will automatically close if it has been idle for
-    # more than 10 minutes.
-    #
-    # I want transient ssh connection for github since otherwise when I switch
-    # the network github will hang there for a long period. Turning off the
-    # control master can achieve this.
-    controlPersist = "30s";
+    mkOffice = ip: {
+      hostname = ip;
+      port = 22;
+    };
 
-    # TODO(breakds): Setup Agent Forwarding
+    mkIntoOffice = ip: {
+      hostname = ip;
+      port = 22;
+      proxyJump = "sisyphus";
+    };
 
-    matchBlocks = {
+    # Universally useful ssh match blocks
+    baseBlocks = {
       "*" = {
         identityFile = "~/.ssh/breakds_samaritan";
       };
@@ -36,36 +35,6 @@ in {
       "sisyphus" = {
         hostname = "161.189.132.45";
         port = 9000;
-      };
-
-      "bishop" = {
-        hostname = "192.168.110.124";
-        port = 22;
-        proxyJump = "sisyphus";
-      };
-
-      "kami" = {
-        hostname = "192.168.110.134";
-        port = 22;
-        proxyJump = "sisyphus";
-      };
-
-      "ares" = {
-        hostname = "192.168.110.105";
-        port = 22;
-        proxyJump = "sisyphus";
-      };
-
-      "hades" = {
-        hostname = "192.168.110.104";
-        port = 22;
-        proxyJump = "sisyphus";
-      };
-
-      "datahub" = {
-        hostname = "192.168.110.223";
-        port = 22;
-        proxyJump = "sisyphus";
       };
 
       "octavian" = {
@@ -127,15 +96,33 @@ in {
         forwardX11Trusted = true;
       };
 
+      "limbius" = {
+        hostname = "10.77.1.193";
+        user = "breakds";
+      };
+
+      "into-bishop" = mkIntoOffice "192.168.110.124";
+      "into-kami" = mkIntoOffice "192.168.110.134";
+      "into-ares" = mkIntoOffice "192.168.110.105";
+      "into-hades" = mkIntoOffice "192.168.110.104";
+      "into-datahub" = mkIntoOffice "192.168.110.223";
+    };
+
+    # Location dependent entries for "chengdu"
+    chengduBlocks = lib.mkIf (cfg.location == "chengdu") {
+      "bishop" = mkOffice "192.168.110.124";
+      "kami" = mkOffice "192.168.110.134";
+      "ares" = mkOffice "192.168.110.105";
+      "hades" = mkOffice "192.168.110.104";
+      "datahub" = mkOffice "192.168.110.223";
+    };
+
+    # Location dependent entries for ""
+    valleyBlocks = lib.mkIf (cfg.location == "valley") {
       "gpudev-005" = {
         hostname = "39.101.198.43";
         port = 6200;
         user = "yiqing.yang";
-      };
-
-      "limbius" = {
-        hostname = "10.77.1.193";
-        user = "breakds";
       };
 
       "into-gail3" = {
@@ -251,5 +238,37 @@ in {
       "bmbj031" = mkBMBJ "182.92.104.37";
       "into-bmbj031" = mkIntoBMBJ "182.92.104.37";
     };
+
+in {
+  options.home.bds = with lib; {
+    location = mkOption {
+      type = types.enum [ "valley" "chengdu" ];
+      default = "valley";
+      description = ''
+        Specify the location where the machine is physically located.
+        For example, ssh jump proxies may depend on this.
+      '';
+    };    
+  };
+  
+  programs.ssh = {
+    enable = true;
+    hashKnownHosts = true;
+    controlMaster = "auto";
+    # The master connection will automatically close if it has been idle for
+    # more than 10 minutes.
+    #
+    # I want transient ssh connection for github since otherwise when I switch
+    # the network github will hang there for a long period. Turning off the
+    # control master can achieve this.
+    controlPersist = "30s";
+
+    # TODO(breakds): Setup Agent Forwarding
+
+    matchBlocks = lib.mkMerge [
+      baseBlocks
+      valleyBlocks
+      chengduBlocks
+    ];
   };
 }
