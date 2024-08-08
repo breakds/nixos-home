@@ -115,7 +115,7 @@ let cfg = config.home.bds;
         hostname = "ssh.github.com";
         port = 443;
       };
-      
+
       "bishop" = mkOffice "192.168.110.124";
       "kami" = mkOffice "192.168.110.134";
       "ares" = mkOffice "192.168.110.105";
@@ -254,27 +254,30 @@ in {
         Specify the location where the machine is physically located.
         For example, ssh jump proxies may depend on this.
       '';
-    };    
+    };
   };
-  
-  programs.ssh = {
-    enable = true;
-    hashKnownHosts = true;
-    controlMaster = "auto";
-    # The master connection will automatically close if it has been idle for
-    # more than 10 minutes.
-    #
-    # I want transient ssh connection for github since otherwise when I switch
-    # the network github will hang there for a long period. Turning off the
-    # control master can achieve this.
-    controlPersist = "30s";
 
-    # TODO(breakds): Setup Agent Forwarding
+  config = {
 
-    matchBlocks = lib.mkMerge [
-      baseBlocks
-      valleyBlocks
-      chengduBlocks
-    ];
+    programs.ssh = {
+      enable = true;
+      hashKnownHosts = true;
+      controlMaster = "auto";
+      # The master connection will automatically close if it has been idle for
+      # more than 10 minutes.
+      #
+      # I want transient ssh connection for github since otherwise when I switch
+      # the network github will hang there for a long period. Turning off the
+      # control master can achieve this.
+      controlPersist = "30s";
+
+      # TODO(breakds): Setup Agent Forwarding
+
+      matchBlocks = lib.mkMerge [
+        baseBlocks
+        valleyBlocks
+        chengduBlocks
+      ];
+    };
   };
 }
