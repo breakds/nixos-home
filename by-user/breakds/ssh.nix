@@ -110,6 +110,12 @@ let cfg = config.home.bds;
 
     # Location dependent entries for "chengdu"
     chengduBlocks = lib.mkIf (cfg.location == "chengdu") {
+      # Specific requirement for China
+      "github.com" = {
+        hostname = "ssh.github.com";
+        port = 443;
+      };
+      
       "bishop" = mkOffice "192.168.110.124";
       "kami" = mkOffice "192.168.110.134";
       "ares" = mkOffice "192.168.110.105";
