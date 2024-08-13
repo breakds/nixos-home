@@ -18,6 +18,14 @@ let cfg = config.home.bds;
     mkOffice = ip: {
       hostname = ip;
       port = 22;
+      forwardAgent = true;
+      # Automatically forward 28888 back to the client, for e.g. jupyter lab purpose.
+      localForwards = [{
+        bind.address = "localhost";
+        bind.port = 28888;
+        host.address = "localhost";
+        host.port = 28888;
+      }];
     };
 
     mkIntoOffice = ip: {
