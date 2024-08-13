@@ -24,6 +24,7 @@ let cfg = config.home.bds;
       hostname = ip;
       port = 22;
       proxyJump = "sisyphus";
+      forwardAgent = true;
     };
 
     # Universally useful ssh match blocks
