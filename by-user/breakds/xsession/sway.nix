@@ -48,6 +48,10 @@ in {
         startup = [
           { command = "${pkgs.autotiling}/bin/autotiling"; }
           { command = "${pkgs.wpaperd}/bin/wpaperd"; }
+          # This is for non-wayland-native applications such as chrome and
+          # emacs. For them, we use "Xft.dpi" to scale, which is defined in
+          # "~/.Xresources". This command force activate it.
+          { command = "${pkgs.xorg.xrdb}/bin/xrdb -merge ~/.Xresources"; }
         ];
 
         window = {
