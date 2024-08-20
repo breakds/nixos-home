@@ -36,6 +36,6 @@ in {
   };
 
   home.file = {
-    ".config/git/global.gitignore" = ./dotfiles/gitignore;
+    ".config/git/global.gitignore".source = ./dotfiles/gitignore;
   };
 }
