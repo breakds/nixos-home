@@ -26,11 +26,16 @@ in {
       init.defaultBranch = "master";
       advice.addIgnoredFile = false;
       http.version = "HTTP/1.1";
+      core.excludesFile = "~/.config/git/global.gitignore";
     };
 
     aliases = {
       # Copied from Kiran Rao: https://kiranrao.ca/2024/06/21/git-config.html
       logall = "log --graph --abbrev-commit --decorate --date=short --format=format:'%C(bold cyan)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)%an%C(reset) %C(bold yellow)%d%C(reset)' --branches --remotes --tags";
     };
+  };
+
+  home.file = {
+    ".config/git/global.gitignore" = ./dotfiles/gitignore;
   };
 }
