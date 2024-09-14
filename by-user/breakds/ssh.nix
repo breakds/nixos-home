@@ -60,6 +60,7 @@ let cfg = config.home.bds;
       "xx-gateway" = {
         hostname = "118.116.4.4";
         port = 9000;
+        user = "wonder";
       };
 
       "malenia-home" = {
