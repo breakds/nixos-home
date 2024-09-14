@@ -35,6 +35,13 @@ let cfg = config.home.bds;
       forwardAgent = true;
     };
 
+    mkIntoXixin = ip: {
+      hostname = ip;
+      port = 22;
+      proxyJump = "xx-gateway";
+      forwardAgent = true;
+    };
+
     # Universally useful ssh match blocks
     baseBlocks = {
       "*" = {
@@ -48,6 +55,11 @@ let cfg = config.home.bds;
 
       "octavian" = {
         hostname = "10.77.1.130";
+      };
+
+      "xx-gateway" = {
+        hostname = "118.116.4.4";
+        port = 9000;
       };
 
       "malenia-home" = {
@@ -115,6 +127,8 @@ let cfg = config.home.bds;
       "into-ares" = mkIntoOffice "192.168.110.105";
       "into-hades" = mkIntoOffice "192.168.110.104";
       "into-datahub" = mkIntoOffice "192.168.110.223";
+
+      "into-xx-database-1" = mkIntoXixin "192.168.120.207";
     };
 
     # Location dependent entries for "chengdu"
