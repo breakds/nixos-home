@@ -130,6 +130,8 @@ let cfg = config.home.bds;
       "into-datahub" = mkIntoOffice "192.168.110.223";
 
       "into-xx-database-1" = mkIntoXixin "192.168.120.207";
+      "into-xx-monitor" = mkIntoXixin "192.168.120.179";
+      "into-xx-cardinal" = mkIntoXixin "192.168.120.204";
     };
 
     # Location dependent entries for "chengdu"
