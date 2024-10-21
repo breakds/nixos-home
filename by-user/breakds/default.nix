@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     (pkgs.callPackage ../../pkgs/resurrect {})
+    mcomix
   ];
 
   home.file = {
@@ -122,5 +123,19 @@
       # Be fancy!
       ${pkgs.fastfetch}/bin/fastfetch
     '';
+  };
+
+  gtk = {
+    gtk2.extraConfig = {
+       gtk-recent-files-max-age = 0;
+    };
+    gtk3.extraConfig = {
+      gtk-recent-files-max-age = 0;
+      gtk-recent-files-limit = 0;
+    };
+    gtk4.extraConfig = {
+      gtk-recent-files-max-age = 0;
+      gtk-recent-files-limit = 0;
+    };
   };
 }
