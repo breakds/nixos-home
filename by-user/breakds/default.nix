@@ -126,9 +126,10 @@
   };
 
   gtk = {
-    gtk2.extraConfig = {
-       gtk-recent-files-max-age = 0;
-    };
+    enable = true;
+    gtk2.extraConfig = ''
+       gtk-recent-files-max-age = 0
+    '';
     gtk3.extraConfig = {
       gtk-recent-files-max-age = 0;
       gtk-recent-files-limit = 0;
