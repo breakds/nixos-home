@@ -44,7 +44,7 @@ in {
             dwtp = "enabled";              # disable while trackpointing
           };
           "type:keyboard" = {
-            xkb_options = "ctrl:nocaps";
+            xkb_options = "ctrl:nocaps,ctrl:swap_lwin_lctl";
           };
         };
 
