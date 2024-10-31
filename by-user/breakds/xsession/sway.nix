@@ -43,9 +43,9 @@ in {
             dwt = "enabled";               # disable while typing
             dwtp = "enabled";              # disable while trackpointing
           };
-          "type:keyboard" = {
-            xkb_options = "ctrl:nocaps,ctrl:swap_lwin_lctl";
-          };
+          # "type:keyboard" = {
+          #   xkb_options = "ctrl:nocaps,ctrl:swap_lwin_lctl";
+          # };
         };
 
         startup = [
