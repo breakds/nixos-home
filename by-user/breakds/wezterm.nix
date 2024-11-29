@@ -27,9 +27,9 @@
 
     extraConfig = ''
       return {
-        font = wezterm.font("Fira Code"),
-        font_size = ${if config.home.bds.laptopXsession then "13.0" else "12.0"},
-        color_scheme = "BreakDrucula",
+        -- font = wezterm.font("Fira Code"),
+        -- font_size = ${if config.home.bds.laptopXsession then "13.0" else "12.0"},
+        -- color_scheme = "BreakDrucula",
         hide_tab_bar_if_only_one_tab = true,
         scrollback_lines = 10000,
         keys = {
