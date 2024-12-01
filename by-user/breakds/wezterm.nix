@@ -25,9 +25,13 @@
       };      
     };
 
+    # TODO(breakds): There is an upstream bug that prevents wezterm from working
+    # correctly, see https://github.com/NixOS/nixpkgs/issues/336069
+    # Adding front_end = "WebGpu" as a workaround for now.
     extraConfig = ''
       return {
-        font = wezterm.font("Fira Code"),
+        front_end = "WebGpu",
+        font = wezterm.font("JetBrainsMonoNL NFP Light"),
         font_size = ${if config.home.bds.laptopXsession then "13.0" else "12.0"},
         color_scheme = "BreakDrucula",
         hide_tab_bar_if_only_one_tab = true,
