@@ -130,7 +130,8 @@ in {
             "e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
             "l" = "exec ${lock}, mode default";
             "c" = "reload";
-            "r" = "restart";
+            "s" = "restart";
+            "r" = "exec systemctl reboot, mode default";
             "p" = "exec systemctl poweroff, mode default";
             "Escape" = "mode default";
             "Return" = "mode default";
