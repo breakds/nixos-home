@@ -13,7 +13,7 @@ in {
       config = rec {
         modifier = "Mod4";
         terminal = "${config.programs.wezterm.package}/bin/wezterm";
-        menu = "${pkgs.rofi-emoji-wayland}/bin/rofi -show drun";
+        menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
 
         bars = [{
           command = "${pkgs.waybar}/bin/waybar";
@@ -192,7 +192,7 @@ in {
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-emoji-wayland;
-      font = "Monospace 10";
+      font = "JetBrainsMonoNL NFP Light 10";
 
       extraConfig = {
         case-sensitive = false;
