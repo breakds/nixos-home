@@ -13,7 +13,7 @@ in {
       config = rec {
         modifier = "Mod4";
         terminal = "${config.programs.wezterm.package}/bin/wezterm";
-        menu = "${pkgs.rofi}/bin/rofi -show drun";
+        menu = "${pkgs.rofi-emoji-wayland}/bin/rofi -show drun";
 
         bars = [{
           command = "${pkgs.waybar}/bin/waybar";
@@ -141,6 +141,8 @@ in {
           "${modifier}+x" = "mode session";
           "${modifier}+r" = "mode resize";
 
+          # Rofi
+
           # Media Keys
           "XF86AudioRaiseVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
           "XF86AudioLowerVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
@@ -189,7 +191,8 @@ in {
 
     programs.rofi = {
       enable = true;
-      font = "Monospace 8";
+      package = pkgs.rofi-emoji-wayland;
+      font = "Monospace 10";
 
       extraConfig = {
         case-sensitive = false;
