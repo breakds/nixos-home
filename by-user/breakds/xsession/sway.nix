@@ -13,7 +13,7 @@ in {
       config = rec {
         modifier = "Mod4";
         terminal = "${config.programs.wezterm.package}/bin/wezterm";
-        menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
+        menu = "${config.programs.rofi.finalPackage}/bin/rofi -show drun";
 
         bars = [{
           command = "${pkgs.waybar}/bin/waybar";
@@ -65,7 +65,7 @@ in {
           "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
           "${modifier}+d" = "exec ${menu}";
-          "${modifier}+Shift+p" = "exec ${pkgs.rofi-pass-wayland}/bin/rofi-pass";
+          "${modifier}+Shift+p" = "exec ${config.programs.rofi.pass.package}/bin/rofi-pass";
           "${modifier}+Shift+b" = "exec ${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";
 
           "${modifier}+j" = "focus left";
@@ -191,14 +191,15 @@ in {
 
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-emoji-wayland;
+      package = pkgs.rofi-wayland;
       font = "JetBrainsMonoNL NFP Light 10";
+      theme = "sidebar";
 
       extraConfig = {
         case-sensitive = false;
         display-drun = "Apps:";
         modi = [ "drun" "run" ];
-        show-icons = false;
+        show-icons = true;
       };
 
       pass = {
@@ -210,6 +211,7 @@ in {
       plugins = with pkgs; [
         rofi-bluetooth
         rofi-pulse-select
+        rofi-emoji-wayland
       ];
     };
 
