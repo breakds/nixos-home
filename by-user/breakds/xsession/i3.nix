@@ -20,7 +20,7 @@ in {
       config = rec {
         modifier = "Mod4";
         terminal = "${config.programs.wezterm.package}/bin/wezterm";
-        menu = "${pkgs.rofi}/bin/rofi -show drun";
+        menu = "${config.programs.rofi.finalPackage}/bin/rofi -show drun";
 
         fonts = {
           names = [ "RobotoMono" "FontAwesome" ];
@@ -37,6 +37,8 @@ in {
           "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
           "${modifier}+d" = "exec ${menu}";
+          "${modifier}+Shift+p" = "exec ${config.programs.rofi.pass.package}/bin/rofi-pass";
+          "${modifier}+Shift+b" = "exec ${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";
 
           "${modifier}+j" = "focus left";
           "${modifier}+k" = "focus down";
@@ -142,6 +144,32 @@ in {
           statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml";
         }];
       };
+    };
+
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi;
+      font = "JetBrainsMonoNL NFP Light 10";
+      theme = "sidebar";
+
+      extraConfig = {
+        case-sensitive = false;
+        display-drun = "Apps:";
+        modi = [ "drun" "run" ];
+        show-icons = true;
+      };
+
+      pass = {
+        enable = true;
+        package = pkgs.rofi-pass;
+        stores = [ "~/.password-store" ];
+      };
+
+      plugins = with pkgs; [
+        rofi-bluetooth
+        rofi-pulse-select
+        rofi-emoji
+      ];
     };
 
     # This will generate $HOME/.config/i3status-rust/config.toml
