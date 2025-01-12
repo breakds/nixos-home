@@ -7,6 +7,7 @@
     ./xsession
     ./sync.nix
     ./ssh.nix
+    ./unison-remote-dev.nix
   ];
 
   home.packages = with pkgs; [
