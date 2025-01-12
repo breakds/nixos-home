@@ -1,4 +1,4 @@
-{ pkgs, lib, osConfig, ... }:
+{ pkgs, lib, config, osConfig, ... }:
 
 # Home Manager will pass osConfig as a module argument to any modules you
 # create. This contains the system’s NixOS configuration.
