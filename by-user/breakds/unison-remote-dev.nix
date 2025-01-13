@@ -4,7 +4,7 @@
 # create. This contains the system’s NixOS configuration.
 
 let allClientRoots = {
-      "hand" = [ "PersonaX@malenia-home" ];
+      "hand" = [ "PersonaX@malenia-home" "beancounting@malenia-home" ];
     };
 
     clientRoots = if builtins.hasAttr osConfig.networking.hostName allClientRoots
@@ -20,6 +20,17 @@ in {
     home.packages = with pkgs; [
       unison
     ];
+
+    home.activation.prepareLocal = lib.mkIf enabled (
+      let localPaths = lib.strings.concatMapStringsSep " " (
+            x: "'/home/breakds/projects/remotes/${x}'") clientRoots;
+      in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        for path in ${localPaths}; do
+          if [[ ! -d $path ]]; then
+            mkdir -p $path
+          fi
+        done
+      '');
 
     services.unison = lib.mkIf enabled {
       enable = true;
