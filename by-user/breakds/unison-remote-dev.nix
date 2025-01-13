@@ -3,13 +3,17 @@
 # Home Manager will pass osConfig as a module argument to any modules you
 # create. This contains the system’s NixOS configuration.
 
-let cfg = config.services.unison-remote-dev;
+let allClientRoots = {
+      "hand" = [ "PersonaX@malenia-home" ];
+    };
+
+    clientRoots = if builtins.hasAttr osConfig.networking.hostName allClientRoots
+                  then builtins.getAttr osConfig.networking.hostName allClientRoots
+                  else [];
+
+    enabled = (lib.length clientRoots) > 0;
 
 in {
-  options.services.unison-remote-dev = with lib; {
-    enable = mkEnableOption "Unison based remote development";
-  };
-
   config = {
     # Always have unison installed. This is also required on the remote machine (i.e.
     # the server).
@@ -17,16 +21,22 @@ in {
       unison
     ];
 
-    systemd.user = lib.mkIf cfg.enable {
-      services.unison-remote-dev-client = {
-        Unit.Description = "Sync the local copy of repos to the corresponding remotes";
-        service = {
-          # Run those only when no other higher priority processes are ready to run.
-          CPUSchedulingPolicy = "idle";
-          IOSchedulingClass = "idle";
-          Environment = [ "UNISON='${toString config.xdg.dataHome}/unison'" ];
+    services.unison = lib.mkIf enabled {
+      enable = true;
+      # Note that this requires `unison` installed on the remote machine. Can just
+      # add it in `home.packages`.
+      pairs = lib.foldl' (acc: localName: let
+        parts = lib.strings.split "@" localName;
+        originalName = lib.elemAt parts 0;
+        remoteHost = lib.elemAt parts 1;
+      in acc // {
+        localName = {
+          roots = [
+            "/home/breakds/projects/remotes/${localName}"
+            "ssh://${remoteHost}//home/breakds/projects/${originalName}"
+          ];
         };
-      };
+      }) {} clientRoots;
     };
   };
 }
