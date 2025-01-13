@@ -26,11 +26,11 @@ in {
       # Note that this requires `unison` installed on the remote machine. Can just
       # add it in `home.packages`.
       pairs = lib.foldl' (acc: localName: let
-        parts = lib.strings.split "@" localName;
+        parts = lib.strings.splitString "@" localName;
         originalName = lib.elemAt parts 0;
         remoteHost = lib.elemAt parts 1;
       in acc // {
-        localName = {
+        "${localName}" = {
           roots = [
             "/home/breakds/projects/remotes/${localName}"
             "ssh://${remoteHost}//home/breakds/projects/${originalName}"
