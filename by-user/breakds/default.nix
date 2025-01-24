@@ -8,6 +8,7 @@
     ./sync.nix
     ./ssh.nix
     ./unison-remote-dev.nix
+    ./vscode.nix
   ];
 
   home.packages = with pkgs; [
@@ -29,14 +30,6 @@
     nix-direnv = {
       enable = true;
     };
-  };
-
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      yzhang.markdown-all-in-one
-    ];
   };
 
   programs.fzf = {
