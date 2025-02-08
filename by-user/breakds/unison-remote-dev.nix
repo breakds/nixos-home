@@ -5,6 +5,11 @@
 
 let allClientRoots = {
       "hand" = [ "PersonaX@malenia-home" "beancounting@malenia-home" ];
+      "ghostberry" = [
+        "intraday-alpha-research@hades"
+        "research-toolkit@hades"
+        "deployhub@hades"
+      ];
     };
 
     clientRoots = if builtins.hasAttr osConfig.networking.hostName allClientRoots
