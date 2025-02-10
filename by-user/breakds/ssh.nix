@@ -111,13 +111,6 @@ let cfg = config.home.bds;
         forwardX11Trusted = true;
       };
 
-      "into-lothric" = {
-        hostname = "10.77.1.127";
-        proxyJump = "www.breakds.org";
-        forwardX11 = true;
-        forwardX11Trusted = true;
-      };
-
       "limbius" = {
         hostname = "10.77.1.193";
         user = "breakds";
@@ -127,6 +120,7 @@ let cfg = config.home.bds;
       "into-kami" = mkIntoOffice "192.168.110.134";
       "into-ares" = mkIntoOffice "192.168.110.105";
       "into-hades" = mkIntoOffice "192.168.110.104";
+      "into-lothric" = mkIntoOffice "192.168.110.30";
       "into-datahub" = mkIntoOffice "192.168.110.223";
 
       "into-xx-database-1" = mkIntoXixin "192.168.120.207";
@@ -142,6 +136,7 @@ let cfg = config.home.bds;
         port = 443;
       };
 
+      "lothric" = mkOffice "192.168.110.30";
       "bishop" = mkOffice "192.168.110.124";
       "kami" = mkOffice "192.168.110.134";
       "ares" = mkOffice "192.168.110.105";

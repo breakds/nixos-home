@@ -6,9 +6,9 @@
 let allClientRoots = {
       "hand" = [ "PersonaX@malenia-home" "beancounting@malenia-home" ];
       "ghostberry" = [
-        "intraday-alpha-research@hades"
-        "research-toolkit@hades"
-        "deployhub@hades"
+        "intraday-alpha-research@lothric"
+        "research-toolkit@lothric"
+        "deployhub@lothric"
       ];
     };
 
