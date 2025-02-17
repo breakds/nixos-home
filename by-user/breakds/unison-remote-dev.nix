@@ -9,6 +9,7 @@ let allClientRoots = {
         "intraday-alpha-research@lothric"
         "research-toolkit@lothric"
         "deployhub@lothric"
+        "research-incubator@lothric"
       ];
     };
 
