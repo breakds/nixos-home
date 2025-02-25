@@ -21,12 +21,49 @@ in {
       signByDefault = false;
     };
 
+    ignores = [
+      "*~"
+      ".direnv"
+      ".envrc"
+      ".goose"
+      ".aider*"
+      "result"
+    ];
+
+    # https://blog.gitbutler.com/how-git-core-devs-configure-git/
     extraConfig = {
       pull.rebase = true;
       init.defaultBranch = "master";
       advice.addIgnoredFile = false;
       http.version = "HTTP/1.1";
       core.excludesFile = "~/.config/git/global.gitignore";
+
+      # `git branch` will list branches in multi columns
+      column.ui = "auto";
+      # `git branch` will rank branches by most-recent-edits
+      branch.sort = "-committerdate";
+      # A better algorithm when computing diff and whatsoever.
+      diff.algorithm = "histogram";
+
+      push.autoSetupRemote = true;   # No more git push -u
+      push.followTags = true;        # Push also upload all tags
+
+      # Sane fetch behaviors
+      fetch.prune = true;
+      fetch.pruneTags = true;
+      fetch.all = true;
+
+      # Fix my fingers please
+      help.autocorrect = "prompt";
+
+      # When rebase a lot of commits, if a commit repeats itself on every
+      # update, auto resolve.
+      rerere.enable = true;
+      rerere.autoupdate = true;
+
+      log.date = "iso";  # YYYY-MM-DD is much more readable
+
+      apply.whitespace = "fix";  # Please remove trailing whitespaces
     };
 
     aliases = {
