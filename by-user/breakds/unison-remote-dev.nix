@@ -10,6 +10,7 @@ let allClientRoots = {
         "research-toolkit@lothric"
         "deployhub@lothric"
         "research-incubator@lothric"
+        "cuda-playground@lothric"
       ];
     };
 
