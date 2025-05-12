@@ -121,6 +121,7 @@ let cfg = config.home.bds;
       "into-ares" = mkIntoOffice "192.168.110.105";
       "into-hades" = mkIntoOffice "192.168.110.104";
       "into-lothric" = mkIntoOffice "192.168.110.30";
+      "into-thor" = mkIntoOffice "192.168.110.138";
       "into-datahub" = mkIntoOffice "192.168.110.223";
 
       "into-xx-database-1" = mkIntoXixin "192.168.120.207";
