@@ -99,7 +99,7 @@
       gst = "git status";
     };
 
-    initExtra = ''
+    initContent = ''
       export VISUAL='emacs'
       if [[ -n $SSH_CONNECTION ]]; then
         export EDITOR='emacs'
