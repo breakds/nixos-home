@@ -266,7 +266,7 @@ in {
       };
     };
 
-    programs.wpaperd = {
+    services.wpaperd = {
       enable = true;
       settings.default = {
         duration = "2m";
