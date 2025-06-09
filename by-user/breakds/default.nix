@@ -17,7 +17,6 @@
   ];
 
   home.file = {
-    # ".inputrc".source = ./dotfiles/inputrc;
     ".gdbinit".text = ''
       set auto-load safe-path /nix/store
     '';
@@ -31,13 +30,6 @@
       enable = true;
     };
   };
-
-  # programs.fzf = {
-  #   enable = true;
-  #   enableBashIntegration = true;
-  #   enableZshIntegration = true;
-  #   defaultOptions = [ "--height 50%" "--border" ];
-  # };
 
   programs.atuin = {
     enable = true;
