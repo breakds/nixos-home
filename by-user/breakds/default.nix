@@ -17,7 +17,7 @@
   ];
 
   home.file = {
-    ".inputrc".source = ./dotfiles/inputrc;
+    # ".inputrc".source = ./dotfiles/inputrc;
     ".gdbinit".text = ''
       set auto-load safe-path /nix/store
     '';
@@ -32,11 +32,27 @@
     };
   };
 
-  programs.fzf = {
+  # programs.fzf = {
+  #   enable = true;
+  #   enableBashIntegration = true;
+  #   enableZshIntegration = true;
+  #   defaultOptions = [ "--height 50%" "--border" ];
+  # };
+
+  programs.atuin = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    defaultOptions = [ "--height 50%" "--border" ];
+    daemon.enable = false;  # Might need in the future.
+    settings = {
+      auto_sync = true;
+      sync_address = "https://atuin.breakds.org";
+      sync_frequency = "5m";
+      update_check = false;
+      style = "full";
+      sync.records = true;
+      dotfiles.enabled = true;
+    };
   };
 
   programs.bash = {
