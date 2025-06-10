@@ -17,6 +17,7 @@
   ];
 
   home.file = {
+    ".inputrc".source = ./dotfiles/inputrc;
     ".gdbinit".text = ''
       set auto-load safe-path /nix/store
     '';
@@ -36,6 +37,7 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
     daemon.enable = false;  # Might need in the future.
+    flags = [ "--disable-up-arrow" ];
     settings = {
       auto_sync = true;
       sync_address = "https://atuin.breakds.org";
