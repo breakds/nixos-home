@@ -288,8 +288,6 @@ in {
       wayland-utils
       wl-clipboard
       mako
-      oculante  # Image Viewer
-      sioyek    # PDF viewer
     ];
   };
 }
