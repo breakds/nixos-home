@@ -288,6 +288,21 @@ in {
       wayland-utils
       wl-clipboard
       mako
+      oculante  # Image Viewer
+      sioyek    # PDF viewer
     ];
+
+    # This is to make it possible to associate MIME types.
+    xdg.desktopEntries = {
+      sioyek = {
+        name = "Sioyek";
+        exec = "sioyek %f";
+        icon = "com.github.ahrm.sioyek";
+        terminal = false;
+        type = "Application";
+        categories = [ "Office" ];
+        mimeType = [ "application/pdf" ];
+      };
+    };
   };
 }
