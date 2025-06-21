@@ -140,6 +140,7 @@ in {
 
           "${modifier}+x" = "mode session";
           "${modifier}+r" = "mode resize";
+          "${modifier}+Shift+u" = "mode screenshot";
 
           # Rofi
 
@@ -173,6 +174,13 @@ in {
             "p" = "exec systemctl poweroff, mode default";
           };
 
+          screenshot = let grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot"; in {
+            Escape = "mode default";
+            REturn = "mode default";
+            "a" = "exec ${grimshot} save active, mode default";
+            "s" = "exec ${grimshot} save area, mode default";
+            "w" = "exec ${grimshot} save window, mode default";
+          };
         };
       };
 
