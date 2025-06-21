@@ -288,6 +288,33 @@ in {
       wayland-utils
       wl-clipboard
       mako
+      oculante  # Image Viewer
+      sioyek    # PDF viewer
     ];
+
+    # Add this directory to $XDG_DATA_DIRS so that the
+    # applications/mimeapps.list there gets picked up.
+    xdg.systemDirs.data = [
+      "/home/breakds/.local/share"
+    ];
+
+    xdg.mimeApps = {
+      enable = true;
+      associations.added = {
+        "application/pdf" = [ "sioyek.desktop" ];
+        "image/jpg" = [ "oculante.desktop" ];
+        "image/png" = [ "oculante.desktop" ];
+      };
+      defaultApplications = {
+        "application/pdf" = [ "sioyek.desktop" ];
+        "image/jpg" = [ "oculante.desktop" ];
+        "image/png" = [ "oculante.desktop" ];
+        "text/html" = [ "google-chrome.desktop" ];
+        "x-scheme-handler/http" = [ "google-chrome.desktop" ];
+        "x-scheme-handler/https" = [ "google-chrome.desktop" ];
+        "x-scheme-handler/about" = [ "google-chrome.desktop" ];
+        "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
+      };
+    };
   };
 }
