@@ -148,6 +148,10 @@ in {
           "XF86AudioRaiseVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
           "XF86AudioLowerVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
           "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          # Brightness ↑
+          "XF86MonBrightnessUp"   = "exec ${pkgs.brightnessctl}/bin/brightnessctl -n set +5%";
+          # Brightness ↓
+          "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -n set 5%-";
         };
 
         modes = {
