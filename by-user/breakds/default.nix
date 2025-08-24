@@ -3,6 +3,7 @@
 {
   imports = [
     ./git.nix
+    ./github.nix
     ./wezterm.nix
     ./xsession
     ./sync.nix
