@@ -3,6 +3,8 @@
 let sysConfig = (import <nixpkgs/nixos> {}).config;
 
 in {
+  imports = [ ./git-psynk.nix ];
+  
   programs.git = {
     enable = true;
     package = lib.mkDefault pkgs.gitAndTools.gitFull;
