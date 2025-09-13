@@ -16,11 +16,9 @@ in {
     };
 
     signing = {
-      key = "breakds@gmail.com";
-      # Disabled because otherwise it will ask me to type the password
-      # for the GPG key every time. Maybe until I figure out the GPG
-      # agent thing.
-      signByDefault = false;
+      format = "ssh";
+      key = "~/.ssh/breakds_samaritan";
+      signByDefault = true;
     };
 
     ignores = [
