@@ -12,6 +12,7 @@
             email = "breakds@psynk.ai";
             signingKey = "~/.ssh/breakds_psynk";
           };
+          core.sshCommand = "ssh -i ~/.ssh/breakds_psynk -o IdentitiesOnly=yes";
         };
       }
     ];
