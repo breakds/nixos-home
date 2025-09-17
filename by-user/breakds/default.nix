@@ -10,6 +10,7 @@
     ./ssh.nix
     ./unison-remote-dev.nix
     ./vscode.nix
+    ./starship.nix
   ];
 
   home.packages = with pkgs; [
