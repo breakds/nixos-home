@@ -4,6 +4,7 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
     settings = {
       format = ''
         [](color_orange)$os$username[](bg:color_yellow fg:color_orange)$directory[](fg:color_yellow bg:color_aqua)$git_branch$git_status[](fg:color_aqua bg:color_blue)$c$cpp$rust$golang$nodejs$php$java$kotlin$haskell$python[](fg:color_blue bg:color_bg3)$docker_context$conda$pixi[](fg:color_bg3 bg:color_bg1)$time[ ](fg:color_bg1)$line_break$character'';
@@ -12,6 +13,7 @@
 
       palettes.gruvbox_dark = {
         color_fg0 = "#fbf1c7";
+        color_fg1 = "#483C32";
         color_bg1 = "#3c3836";
         color_bg3 = "#665c54";
         color_blue = "#458588";
@@ -59,9 +61,10 @@
       };
 
       directory = {
-        style = "fg:color_fg0 bg:color_yellow";
+        style = "fg:color_fg1 bg:color_yellow";
         format = "[ $path ]($style)";
-        truncation_length = 3;
+        truncation_length = 120;
+        truncate_to_repo = false;
         truncation_symbol = "…/";
         substitutions = {
           "Documents" = "󰈙 ";
@@ -176,7 +179,7 @@
         vimcmd_replace_one_symbol = "[](bold fg:color_purple)";
         vimcmd_replace_symbol = "[](bold fg:color_purple)";
         vimcmd_visual_symbol = "[](bold fg:color_yellow)";
-      };        
+      };
     };
   };
 }
