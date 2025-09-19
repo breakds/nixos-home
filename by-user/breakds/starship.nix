@@ -7,7 +7,7 @@
     enableZshIntegration = true;
     settings = {
       format = ''
-        [](color_orange)$os$username[](bg:color_yellow fg:color_orange)$directory[](fg:color_yellow bg:color_aqua)$git_branch$git_status[](fg:color_aqua bg:color_blue)$c$cpp$rust$golang$nodejs$php$java$kotlin$haskell$python[](fg:color_blue bg:color_bg3)$docker_context$conda$pixi[](fg:color_bg3 bg:color_bg1)$time[ ](fg:color_bg1)$line_break$character'';
+        [](color_orange)$os$username$hostname[](bg:color_yellow fg:color_orange)$directory[](fg:color_yellow bg:color_aqua)$git_branch$git_status[](fg:color_aqua bg:color_blue)$c$cpp$rust$golang$nodejs$php$java$kotlin$haskell$python[](fg:color_blue bg:color_bg3)$docker_context$conda$pixi[](fg:color_bg3 bg:color_bg1)$time[ ](fg:color_bg1)$line_break$character'';
 
       palette = "gruvbox_dark";
 
@@ -23,6 +23,14 @@
         color_purple = "#b16286";
         color_red = "#cc241d";
         color_yellow = "#d79921";
+      };
+
+      hostname = {
+        ssh_only = false;
+        disabled = false;
+        # Let's make it look like the username module for consistency.
+        style = "bg:color_orange fg:color_fg0";
+        format = "[@$ hostname]($style)";
       };
 
       os = {
