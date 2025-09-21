@@ -28,9 +28,11 @@
       hostname = {
         ssh_only = false;
         disabled = false;
+
+        ssh_symbol = "󰢹 ";
         # Let's make it look like the username module for consistency.
         style = "bg:color_orange fg:color_fg0";
-        format = "[@$ hostname]($style)";
+        format = "[@ $hostname $ssh_symbol]($style)";
       };
 
       os = {
