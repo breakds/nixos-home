@@ -17,7 +17,7 @@ in {
 
     signing = {
       format = "ssh";
-      key = "~/.ssh/breakds_samaritan";
+      key = "~/.ssh/breakds_malenia";
       signByDefault = true;
     };
 

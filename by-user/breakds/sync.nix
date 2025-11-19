@@ -6,14 +6,14 @@
 # 2. Need to specify a ssh binary to use
 let cloneRepo = { source, path } : lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [[ ! -d "$HOME/${path}" ]]; then
-        GIT_SSH_COMMAND="${pkgs.openssh}/bin/ssh -i /home/breakds/.ssh/breakds_samaritan -o IdentitiesOnly=yes" ${pkgs.git}/bin/git clone ${source} $HOME/${path}
+        GIT_SSH_COMMAND="${pkgs.openssh}/bin/ssh -i /home/breakds/.ssh/breakds_malenia -o IdentitiesOnly=yes" ${pkgs.git}/bin/git clone ${source} $HOME/${path}
       fi
     '';
 
     clonePythonTypeStubs = { source, path } : lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [[ ! -d "$HOME/.local/share/pytypestubs/${path}" ]]; then
         mkdir -p $HOME/.local/share/pytypestubs
-        GIT_SSH_COMMAND="${pkgs.openssh}/bin/ssh -i /home/breakds/.ssh/breakds_samaritan -o IdentitiesOnly=yes" ${pkgs.git}/bin/git clone ${source} \
+        GIT_SSH_COMMAND="${pkgs.openssh}/bin/ssh -i /home/breakds/.ssh/breakds_malenia -o IdentitiesOnly=yes" ${pkgs.git}/bin/git clone ${source} \
           $HOME/.local/share/pytypestubs/${path}
       fi
     '';    

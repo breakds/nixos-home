@@ -32,7 +32,7 @@ let cfg = config.home.bds;
     # Universally useful ssh match blocks
     baseBlocks = {
       "*" = {
-        identityFile = "~/.ssh/breakds_samaritan";
+        identityFile = "~/.ssh/breakds_malenia";
       };
 
       "sisyphus" = {
