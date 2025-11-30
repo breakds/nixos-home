@@ -33,6 +33,22 @@ let cfg = config.home.bds;
     baseBlocks = {
       "*" = {
         identityFile = "~/.ssh/breakds_malenia";
+        hashKnownHosts = true;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        forwardAgent = false;  # explicitly set what default used to be
+        addKeysToAgent = "no";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+
+        # The master connection will automatically close if it has been idle for
+        # more than 10 minutes.
+        #
+        # I want transient ssh connection for github since otherwise when I switch
+        # the network github will hang there for a long period. Turning off the
+        # control master can achieve this.
+        controlMaster = "auto";        
+        controlPersist = "30s";
       };
 
       "sisyphus" = {
@@ -205,16 +221,7 @@ in {
 
     programs.ssh = {
       enable = true;
-      hashKnownHosts = true;
-      controlMaster = "auto";
-      # The master connection will automatically close if it has been idle for
-      # more than 10 minutes.
-      #
-      # I want transient ssh connection for github since otherwise when I switch
-      # the network github will hang there for a long period. Turning off the
-      # control master can achieve this.
-      controlPersist = "30s";
-
+      enableDefaultConfig = false;
       # TODO(breakds): Setup Agent Forwarding
 
       matchBlocks = lib.mkMerge [

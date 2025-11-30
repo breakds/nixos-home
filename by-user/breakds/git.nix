@@ -7,13 +7,7 @@ in {
   
   programs.git = {
     enable = true;
-    package = lib.mkDefault pkgs.gitAndTools.gitFull;
-    userName = lib.mkDefault "Break Yang";
-    userEmail = lib.mkDefault "breakds@gmail.com";
-
-    difftastic = {
-      enable = true;
-    };
+    package = lib.mkDefault pkgs.gitFull;
 
     signing = {
       format = "ssh";
@@ -31,7 +25,10 @@ in {
     ];
 
     # https://blog.gitbutler.com/how-git-core-devs-configure-git/
-    extraConfig = {
+    settings = {
+      user.name = lib.mkDefault "Break Yang";
+      user.email = lib.mkDefault "breakds@gmail.com";
+
       pull.rebase = true;
       init.defaultBranch = "master";
       advice.addIgnoredFile = false;
@@ -64,13 +61,15 @@ in {
       log.date = "iso";  # YYYY-MM-DD is much more readable
 
       apply.whitespace = "fix";  # Please remove trailing whitespaces
-    };
 
-    aliases = {
-      # Copied from Kiran Rao: https://kiranrao.ca/2024/06/21/git-config.html
-      logall = "log --graph --abbrev-commit --decorate --date=short --format=format:'%C(bold cyan)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)%an%C(reset) %C(bold yellow)%d%C(reset)' --branches --remotes --tags";
+      aliases = {
+        # Copied from Kiran Rao: https://kiranrao.ca/2024/06/21/git-config.html
+        logall = "log --graph --abbrev-commit --decorate --date=short --format=format:'%C(bold cyan)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)%an%C(reset) %C(bold yellow)%d%C(reset)' --branches --remotes --tags";
+      };
     };
   };
+
+  programs.difftastic.enable = true;
 
   home.file = {
     ".config/git/global.gitignore".source = ./dotfiles/gitignore;

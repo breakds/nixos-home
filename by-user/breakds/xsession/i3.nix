@@ -13,8 +13,7 @@ in {
     xsession.windowManager.i3 = {
       enable = true;
 
-      # Use the i3-gaps instead of the stock i3
-      package = pkgs.i3-gaps;
+      package = pkgs.i3;
 
       # Use Windows/Command key as the modifier
       config = rec {

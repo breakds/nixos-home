@@ -203,7 +203,7 @@ in {
 
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
+      package = pkgs.rofi;
       font = "JetBrainsMonoNL NFP Light 10";
       theme = "sidebar";
 
@@ -223,7 +223,7 @@ in {
       plugins = with pkgs; [
         rofi-bluetooth
         rofi-pulse-select
-        rofi-emoji-wayland
+        rofi-emoji
       ];
     };
 
