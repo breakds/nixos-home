@@ -2,6 +2,18 @@
 
 let cfg = config.home.bds;
 
+    # Rofi script for launching emacsclient on remote hosts via waypipe
+    rofi-remote-emacs = pkgs.writeShellScriptBin "rofi-remote-emacs" ''
+      if [ -z "$1" ]; then
+        # First call - output host list
+        echo "malenia-home"
+        echo "hand.local"
+      else
+        # User selected a host - launch remote emacs (detached so rofi exits)
+        setsid ${pkgs.waypipe}/bin/waypipe ssh "$1" emacsclient -r >/dev/null 2>&1 &
+      fi
+    '';
+
 in {
   config = lib.mkIf (cfg.windowManager == "sway") {
     wayland.windowManager.sway = {
@@ -67,6 +79,7 @@ in {
           "${modifier}+d" = "exec ${menu}";
           "${modifier}+Shift+p" = "exec ${config.programs.rofi.pass.package}/bin/rofi-pass";
           "${modifier}+Shift+b" = "exec ${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";
+          "${modifier}+Shift+h" = "exec ${config.programs.rofi.finalPackage}/bin/rofi -modi remote-emacs:${rofi-remote-emacs}/bin/rofi-remote-emacs -show remote-emacs";
 
           "${modifier}+j" = "focus left";
           "${modifier}+k" = "focus down";
