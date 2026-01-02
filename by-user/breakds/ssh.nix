@@ -49,6 +49,7 @@ let cfg = config.home.bds;
         # control master can achieve this.
         controlMaster = "auto";        
         controlPersist = "30s";
+        controlPath = "~/.ssh/cm-%C";
       };
 
       "sisyphus" = {
@@ -75,8 +76,6 @@ let cfg = config.home.bds;
             host.port = 8888;
           }
         ];
-        forwardX11 = true;
-        forwardX11Trusted = true;
       };
 
       "into-malenia" = {
@@ -89,8 +88,6 @@ let cfg = config.home.bds;
             host.port = 8888;
           }
         ];
-        forwardX11 = true;
-        forwardX11Trusted = true;
       };
 
       "tailto-malenia" = {
@@ -103,15 +100,11 @@ let cfg = config.home.bds;
             host.port = 8888;
           }
         ];
-        forwardX11 = true;
-        forwardX11Trusted = true;
       };
 
       "into-lorian" = {
         hostname = "10.77.1.128";
         proxyJump = "www.breakds.org";
-        forwardX11 = true;
-        forwardX11Trusted = true;
       };
 
       "limbius" = {
@@ -148,63 +141,6 @@ let cfg = config.home.bds;
       "datahub" = mkOffice "192.168.110.223";
     };
 
-    # Location dependent entries for ""
-    valleyBlocks = lib.mkIf (cfg.location == "valley") {
-      "gpudev-005" = {
-        hostname = "39.101.198.43";
-        port = 6200;
-        user = "yiqing.yang";
-      };
-
-      "into-gail3" = {
-        hostname = "gail3.breakds.org";  # 10.40.0.173
-        proxyJump = "limbius";
-        forwardX11 = true;
-        forwardX11Trusted = true;
-      };
-
-      "into-samaritan" = {
-        hostname = "samaritan.breakds.org";  # 10.40.1.52
-        proxyJump = "limbius";
-        forwardX11 = true;
-        forwardX11Trusted = true;
-      };
-
-      "gail3" = {
-        hostname = "gail3.breakds.org";  # 10.40.0.173
-        forwardX11 = true;
-        forwardX11Trusted = true;
-      };
-
-      "samaritan" = {
-        hostname = "samaritan.breakds.org";  # 10.40.1.52
-        forwardX11 = true;
-        forwardX11Trusted = true;
-      };
-
-      "into-radahn" = {
-        hostname = "radahn.breakds.org";  # 10.40.1.104
-        proxyJump = "limbius";
-        forwardX11 = true;
-        forwardX11Trusted = true;
-      };
-
-      "radahn" = {
-        hostname = "radahn.breakds.org";  # 10.40.1.104
-        forwardX11 = true;
-        forwardX11Trusted = true;
-      };
-
-      "into-ali" = {
-        hostname = "39.105.219.118";
-        proxyJump = "limbius";
-        port = 50022;
-        user = "yiqing.yang";
-        forwardX11 = true;
-        forwardX11Trusted = true;
-      };
-    };
-
 in {
   options.home.bds = with lib; {
     location = mkOption {
@@ -226,7 +162,6 @@ in {
 
       matchBlocks = lib.mkMerge [
         baseBlocks
-        valleyBlocks
         chengduBlocks
       ];
     };
