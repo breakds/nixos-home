@@ -6,13 +6,6 @@ let cfg = config.home.bds;
       hostname = ip;
       port = 22;
       forwardAgent = true;
-      # Automatically forward 28888 back to the client, for e.g. jupyter lab purpose.
-      localForwards = [{
-        bind.address = "localhost";
-        bind.port = 28888;
-        host.address = "localhost";
-        host.port = 28888;
-      }];
     };
 
     mkIntoOffice = ip: {
@@ -48,7 +41,7 @@ let cfg = config.home.bds;
         # the network github will hang there for a long period. Turning off the
         # control master can achieve this.
         controlMaster = "auto";        
-        controlPersist = "30s";
+        controlPersist = "600s";
         controlPath = "~/.ssh/cm-%C";
       };
 
@@ -69,37 +62,16 @@ let cfg = config.home.bds;
 
       "malenia-home" = {
         hostname = "10.77.1.185";
-        localForwards = [
-          {
-            bind.port = 8888;
-            host.address = "localhost";
-            host.port = 8888;
-          }
-        ];
       };
 
       "into-malenia" = {
         hostname = "10.77.1.185";
         proxyJump = "www.breakds.org";
-        localForwards = [
-          {
-            bind.port = 8888;
-            host.address = "localhost";
-            host.port = 8888;
-          }
-        ];
       };
 
       "tailto-malenia" = {
         hostname = "10.77.1.185";
         proxyJump = "100.118.233.13";  # via tailscale exit node
-        localForwards = [
-          {
-            bind.port = 8888;
-            host.address = "localhost";
-            host.port = 8888;
-          }
-        ];
       };
 
       "into-lorian" = {
@@ -163,6 +135,11 @@ in {
       matchBlocks = lib.mkMerge [
         baseBlocks
         chengduBlocks
+        ({
+          "github.com" = {
+            controlPersist = "30s";
+          };
+        })
       ];
     };
   };
