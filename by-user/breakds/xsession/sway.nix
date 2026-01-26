@@ -8,6 +8,7 @@ let cfg = config.home.bds;
         # First call - output host list
         echo "malenia-home"
         echo "hand.local"
+        echo "into-malenia"
       else
         # User selected a host - launch remote emacs (detached so rofi exits)
         setsid ${pkgs.waypipe}/bin/waypipe ssh "$1" emacsclient -r >/dev/null 2>&1 &
