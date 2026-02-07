@@ -310,7 +310,9 @@ let
       firstDayOfWeek = -1;
       hideWeatherCityName = false;
       hideWeatherTimezone = false;
-      name = "San Jose";
+      latitude = "37.34";
+      longitude = "-121.89";
+      name = "San Jose, California";
       showCalendarEvents = true;
       showCalendarWeather = true;
       showWeekNumberInCalendar = false;
