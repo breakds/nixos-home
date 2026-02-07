@@ -21,12 +21,4 @@ in {
     niri-session-menu
     tessen
   ];
-
-  xdg.configFile."fuzzel/fuzzel.ini".text = ''
-    [key-bindings]
-    # Tessen OTP support: custom-8 = exit code 17 (autotype OTP),
-    # custom-9 = exit code 18 (copy OTP)
-    custom-8=Control+o
-    custom-9=Control+Shift+o
-  '';
 }
