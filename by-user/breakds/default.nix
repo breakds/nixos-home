@@ -6,6 +6,7 @@
     ./github.nix
     ./wezterm.nix
     ./xsession
+    ./niri
     ./sync.nix
     ./ssh.nix
     ./unison-remote-dev.nix

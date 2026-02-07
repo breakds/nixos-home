@@ -13,7 +13,7 @@ in {
 
   options.home.bds = with lib; {
     windowManager = mkOption {
-      type = types.enum [ "i3" "sway" ];
+      type = types.enum [ "i3" "sway" "niri" ];
       default = "i3";
       description = ''
         Which window manager to use by the home manager session.
