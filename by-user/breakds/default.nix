@@ -25,6 +25,11 @@
     '';
   };
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
