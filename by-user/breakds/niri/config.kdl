@@ -627,3 +627,7 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+
+// Local overrides for experimentation. This file is not managed by
+// home-manager — create it manually at ~/.config/niri/local.kdl.
+include "local.kdl"
