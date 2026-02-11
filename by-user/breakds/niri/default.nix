@@ -19,6 +19,5 @@ in {
     fuzzel
     noctalia-shell
     niri-session-menu
-    tessen
   ];
 }

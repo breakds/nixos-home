@@ -613,8 +613,7 @@ binds {
     // Session menu via fuzzel
     Mod+X { spawn "niri-session-menu"; }
 
-    // Password store via tessen + fuzzel
-    Mod+Shift+P { spawn "tessen" "-d" "fuzzel"; }
+    Mod+Shift+P { spawn "pass-fuzzel"; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
