@@ -610,6 +610,9 @@ binds {
     Alt+Print { screenshot-window; }
     Mod+Alt+U { screenshot; }
 
+    // Toggle screen recording of a selected region.
+    Mod+Alt+I { spawn "niri-screen-record"; }
+
     // Session menu via fuzzel
     Mod+X { spawn "niri-session-menu"; }
 
