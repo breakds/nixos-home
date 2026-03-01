@@ -84,6 +84,16 @@ let cfg = config.home.bds;
         user = "breakds";
       };
 
+      "pilot1" = {
+        hostname = "52.52.216.115";
+        user = "breakds";
+      };
+
+      "cradle1" = {
+        hostname = "50.18.30.229";
+        user = "breakds";
+      };
+
       "into-bishop" = mkIntoOffice "192.168.110.124";
       "into-kami" = mkIntoOffice "192.168.110.134";
       "into-ares" = mkIntoOffice "192.168.110.105";
