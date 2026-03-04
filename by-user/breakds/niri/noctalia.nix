@@ -295,11 +295,16 @@ let
 
     hooks = {
       darkModeChange = "";
-      enabled = false;
+      # Enable hooks so that screenUnlock fires.
+      enabled = true;
       performanceModeDisabled = "";
       performanceModeEnabled = "";
       screenLock = "";
-      screenUnlock = "";
+      # Restart fcitx5 after screen unlock. When niri locks the session it
+      # deactivates the Wayland input-method protocol binding, and fcitx5
+      # does not re-establish it on unlock — leaving input method silently
+      # broken.  Restarting the service forces a fresh connection.
+      screenUnlock = "systemctl --user restart app-org.fcitx.Fcitx5@autostart.service";
       session = "";
       startup = "";
       wallpaperChange = "";
