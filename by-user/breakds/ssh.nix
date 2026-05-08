@@ -104,6 +104,12 @@ let cfg = config.home.bds;
         proxyJump = "www.breakds.org";
       };
 
+      "hermes.researcher" = {
+        hostname = "10.80.1.3";
+        user = "hermes";
+        proxyJump = "root@10.77.1.136";
+      };
+
       "into-bishop" = mkIntoOffice "192.168.110.124";
       "into-kami" = mkIntoOffice "192.168.110.134";
       "into-ares" = mkIntoOffice "192.168.110.105";
