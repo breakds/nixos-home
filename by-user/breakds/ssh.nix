@@ -110,6 +110,12 @@ let cfg = config.home.bds;
         proxyJump = "root@10.77.1.136";
       };
 
+      "hermes.psynker" = {
+        hostname = "10.80.1.4";
+        user = "hermes";
+        proxyJump = "root@10.77.1.136";
+      };
+
       "into-bishop" = mkIntoOffice "192.168.110.124";
       "into-kami" = mkIntoOffice "192.168.110.134";
       "into-ares" = mkIntoOffice "192.168.110.105";
