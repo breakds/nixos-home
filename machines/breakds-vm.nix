@@ -2,17 +2,16 @@
 
 {
   config = {
+    nixpkgs.config.allowUnfree = true;
+
     users.users."breakds" = {
       isNormalUser = true;
       initialPassword = "I_AM_GROOT";
       home = "/home/breakds";
       uid = 1000;
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-      ];
+      extraGroups = [ "wheel" "networkmanager" ];
     };
 
-    home-manager.users.breakds.home.stateVersion = "22.05"; 
+    home-manager.users.breakds.home.stateVersion = "22.05";
   };
 }

@@ -15,7 +15,7 @@
   ];
 
   home.packages = with pkgs; [
-    (pkgs.callPackage ../../pkgs/resurrect {})
+    (pkgs.callPackage ../../pkgs/resurrect { })
     mcomix
   ];
 
@@ -27,6 +27,7 @@
   };
 
   xdg.userDirs = {
+    setSessionVariables = true;
     enable = true;
     createDirectories = true;
   };
@@ -35,16 +36,14 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    nix-direnv = {
-      enable = true;
-    };
+    nix-direnv = { enable = true; };
   };
 
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    daemon.enable = false;  # Might need in the future.
+    daemon.enable = false; # Might need in the future.
     flags = [ "--disable-up-arrow" ];
     settings = {
       auto_sync = true;
@@ -60,9 +59,7 @@
   programs.bash = {
     enable = true;
 
-    sessionVariables = {
-      EDITOR = "emacs";
-    };
+    sessionVariables = { EDITOR = "emacs"; };
 
     bashrcExtra = ''
       ${pkgs.fastfetch}/bin/fastfetch
@@ -75,9 +72,9 @@
     oh-my-zsh = {
       enable = true;
       plugins = [
-        "pass"     # pass store auto-completion
+        "pass" # pass store auto-completion
         "dotenv"
-        "extract"  # decompression general command
+        "extract" # decompression general command
         "z"
       ];
     };
@@ -139,7 +136,7 @@
   gtk = {
     enable = true;
     gtk2.extraConfig = ''
-       gtk-recent-files-max-age = 0
+      gtk-recent-files-max-age = 0
     '';
     gtk3.extraConfig = {
       gtk-recent-files-max-age = 0;
