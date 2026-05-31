@@ -3,36 +3,36 @@
 let cfg = config.home.bds;
 
     mkOffice = ip: {
-      hostname = ip;
-      port = 22;
-      forwardAgent = true;
+      HostName = ip;
+      Port = 22;
+      ForwardAgent = true;
     };
 
     mkIntoOffice = ip: {
-      hostname = ip;
-      port = 22;
-      proxyJump = "sisyphus";
-      forwardAgent = true;
+      HostName = ip;
+      Port = 22;
+      ProxyJump = "sisyphus";
+      ForwardAgent = true;
     };
 
     mkIntoXixin = ip: {
-      hostname = ip;
-      port = 22;
-      proxyJump = "xx-gateway";
-      forwardAgent = true;
+      HostName = ip;
+      Port = 22;
+      ProxyJump = "xx-gateway";
+      ForwardAgent = true;
     };
 
     # Universally useful ssh match blocks
     baseBlocks = {
       "*" = {
-        identityFile = "~/.ssh/breakds_malenia";
-        hashKnownHosts = true;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        forwardAgent = false;  # explicitly set what default used to be
-        addKeysToAgent = "no";
-        compression = false;
-        serverAliveInterval = 0;
-        serverAliveCountMax = 3;
+        IdentityFile = "~/.ssh/breakds_malenia";
+        HashKnownHosts = true;
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+        ForwardAgent = false;  # explicitly set what default used to be
+        AddKeysToAgent = "no";
+        Compression = false;
+        ServerAliveInterval = 0;
+        ServerAliveCountMax = 3;
 
         # The master connection will automatically close if it has been idle for
         # more than 10 minutes.
@@ -40,80 +40,80 @@ let cfg = config.home.bds;
         # I want transient ssh connection for github since otherwise when I switch
         # the network github will hang there for a long period. Turning off the
         # control master can achieve this.
-        controlMaster = "auto";        
-        controlPersist = "600s";
-        controlPath = "~/.ssh/cm-%C";
+        ControlMaster = "auto";        
+        ControlPersist = "600s";
+        ControlPath = "~/.ssh/cm-%C";
       };
 
       "sisyphus" = {
-        hostname = "161.189.132.45";
-        port = 9000;
+        HostName = "161.189.132.45";
+        Port = 9000;
       };
 
       "octavian" = {
-        hostname = "10.77.1.130";
+        HostName = "10.77.1.130";
       };
 
       "xx-gateway" = {
-        hostname = "118.116.4.4";
-        port = 9000;
-        user = "wonder";
+        HostName = "118.116.4.4";
+        Port = 9000;
+        User = "wonder";
       };
 
       "malenia-home" = {
-        hostname = "10.77.1.185";
+        HostName = "10.77.1.185";
       };
 
       "into-malenia" = {
-        hostname = "10.77.1.185";
-        proxyJump = "www.breakds.org";
+        HostName = "10.77.1.185";
+        ProxyJump = "www.breakds.org";
       };
 
       "tailto-malenia" = {
-        hostname = "10.77.1.185";
-        proxyJump = "100.118.233.13";  # via tailscale exit node
+        HostName = "10.77.1.185";
+        ProxyJump = "100.118.233.13";  # via tailscale exit node
       };
 
       "into-lorian" = {
-        hostname = "10.77.1.128";
-        proxyJump = "www.breakds.org";
+        HostName = "10.77.1.128";
+        ProxyJump = "www.breakds.org";
       };
 
       "limbius" = {
-        hostname = "10.77.1.193";
-        user = "breakds";
+        HostName = "10.77.1.193";
+        User = "breakds";
       };
 
       "pilot1" = {
-        hostname = "52.52.216.115";
-        user = "breakds";
+        HostName = "52.52.216.115";
+        User = "breakds";
       };
 
       "cradle1" = {
-        hostname = "50.18.30.229";
-        user = "breakds";
+        HostName = "50.18.30.229";
+        User = "breakds";
       };
 
       "into-pilot1" = {
-        hostname = "52.52.216.115";
-        proxyJump = "www.breakds.org";
+        HostName = "52.52.216.115";
+        ProxyJump = "www.breakds.org";
       };
 
       "into-cradle1" = {
-        hostname = "50.18.30.229";
-        proxyJump = "www.breakds.org";
+        HostName = "50.18.30.229";
+        ProxyJump = "www.breakds.org";
       };
 
       "hermes.researcher" = {
-        hostname = "10.80.1.3";
-        user = "hermes";
-        proxyJump = "root@10.77.1.136";
+        HostName = "10.80.1.3";
+        User = "hermes";
+        ProxyJump = "root@10.77.1.136";
       };
 
       "hermes.psynker" = {
-        hostname = "10.80.1.4";
-        user = "hermes";
-        proxyJump = "root@10.77.1.136";
+        HostName = "10.80.1.4";
+        User = "hermes";
+        ProxyJump = "root@10.77.1.136";
       };
 
       "into-bishop" = mkIntoOffice "192.168.110.124";
@@ -133,8 +133,8 @@ let cfg = config.home.bds;
     chengduBlocks = lib.mkIf (cfg.location == "chengdu") {
       # Specific requirement for China
       "github.com" = {
-        hostname = "ssh.github.com";
-        port = 443;
+        HostName = "ssh.github.com";
+        Port = 443;
       };
 
       "lothric" = mkOffice "192.168.110.30";
@@ -164,12 +164,12 @@ in {
       enableDefaultConfig = false;
       # TODO(breakds): Setup Agent Forwarding
 
-      matchBlocks = lib.mkMerge [
+      settings = lib.mkMerge [
         baseBlocks
         chengduBlocks
         ({
           "github.com" = {
-            controlPersist = "30s";
+            ControlPersist = "30s";
           };
         })
       ];
