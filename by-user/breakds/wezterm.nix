@@ -36,6 +36,7 @@
         color_scheme = "BreakDrucula",
         hide_tab_bar_if_only_one_tab = true,
         scrollback_lines = 10000,
+        alternate_buffer_wheel_scroll_speed = 1,
         keys = {
           { key = '1', mods = 'SUPER', action = wezterm.action.DisableDefaultAssignment, },
           { key = '2', mods = 'SUPER', action = wezterm.action.DisableDefaultAssignment, },
