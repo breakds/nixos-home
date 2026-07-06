@@ -94,6 +94,11 @@ let cfg = config.home.bds;
         User = "breakds";
       };
 
+      "cradle2" = {
+        HostName = "50.18.95.228";
+        User = "breakds";
+      };
+
       "into-pilot1" = {
         HostName = "52.52.216.115";
         ProxyJump = "www.breakds.org";
