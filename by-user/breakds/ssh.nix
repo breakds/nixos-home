@@ -75,6 +75,12 @@ let cfg = config.home.bds;
         ProxyJump = "cradle";
       };
 
+      "cradle-slot2" = {
+        HostName = "10.231.1.3";
+        User = "root";
+        ProxyJump = "cradle";
+      };
+
       "into-malenia" = {
         HostName = "10.77.1.185";
         ProxyJump = "www.breakds.org";
