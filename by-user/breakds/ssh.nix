@@ -75,7 +75,7 @@ let cfg = config.home.bds;
         ProxyJump = "cradle";
       };
 
-      "cradle-slot2" = {
+      "cradle-coda1" = {
         HostName = "10.231.1.3";
         User = "root";
         ProxyJump = "cradle";
