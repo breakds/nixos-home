@@ -116,6 +116,11 @@ let cfg = config.home.bds;
         User = "breakds";
       };
 
+      "psynk-staging" = {
+        HostName = "18.145.46.99";
+        User = "breakds";
+      };
+
       "into-pilot1" = {
         HostName = "52.52.216.115";
         ProxyJump = "www.breakds.org";
