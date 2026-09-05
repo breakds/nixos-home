@@ -121,6 +121,12 @@ let cfg = config.home.bds;
         User = "breakds";
       };
 
+      "psynk-staging-coda" = {
+        HostName = "10.2323.1.4";
+        User = "root";
+        ProxyJump = "psynk-staging";
+      };
+
       "into-pilot1" = {
         HostName = "52.52.216.115";
         ProxyJump = "www.breakds.org";
