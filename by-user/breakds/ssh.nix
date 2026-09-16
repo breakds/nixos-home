@@ -111,6 +111,11 @@ let cfg = config.home.bds;
         User = "breakds";
       };
 
+      "coda" = {
+        HostName = "13.56.236.228";
+        User = "breakds";
+      };
+
       "cradle2" = {
         HostName = "50.18.95.228";
         User = "breakds";
