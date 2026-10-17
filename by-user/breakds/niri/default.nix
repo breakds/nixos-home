@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 let
   niri-session-menu = pkgs.writeShellScriptBin "niri-session-menu" ''
@@ -18,11 +18,11 @@ let
       if pgrep -x wl-screenrec > /dev/null; then
         pkill -x wl-screenrec
       else
-        mkdir -p "$HOME/Videos"
+        mkdir -p "$HOME/syncthing/workspace/screenclips"
         filename="$(hostname)_$(date +%Y%m%d_%H%M%S).mp4"
         geometry="$(slurp)"
         if [ -n "$geometry" ]; then
-          wl-screenrec --low-power=off -g "$geometry" -f "$HOME/Videos/$filename" &
+          wl-screenrec --low-power=off -g "$geometry" -f "$HOME/syncthing/workspace/screenclips/$filename" &
           disown
         fi
       fi
@@ -31,7 +31,10 @@ let
 in {
   imports = [ ./noctalia.nix ];
 
-  xdg.configFile."niri/config.kdl".source = ./config.kdl;
+  xdg.configFile."niri/config.kdl".source = pkgs.substitute {
+    src = ./config.kdl;
+    substitutions = [ "--replace-fail" "@hostname@" osConfig.networking.hostName ];
+  };
 
   home.packages = with pkgs; [
     fuzzel
