@@ -5,6 +5,7 @@
     ./git.nix
     ./github.nix
     ./wezterm.nix
+    ./zellij.nix
     ./xsession
     ./niri
     ./sync.nix
