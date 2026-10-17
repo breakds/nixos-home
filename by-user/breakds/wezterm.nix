@@ -31,6 +31,8 @@
     extraConfig = ''
       return {
         front_end = "WebGpu",
+        -- Preserve modifiers on digit keys for Zellij tab shortcuts.
+        enable_kitty_keyboard = true,
         font = wezterm.font("JetBrainsMonoNL NFP Light"),
         font_size = ${if config.home.bds.laptopXsession then "13.0" else "12.0"},
         color_scheme = "BreakDrucula",
