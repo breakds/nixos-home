@@ -21,6 +21,15 @@ let cloneRepo = { source, path } : lib.hm.dag.entryAfter ["writeBoundary"] ''
     sync-org = pkgs.callPackage ../../pkgs/sync-org {};
 
 in {
+  home.activation.initSharedInbox = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [[ -d "$HOME/syncthing/workspace" ]]; then
+      run mkdir -p "$HOME/syncthing/workspace/inbox"
+      if [[ ! -e "$HOME/inbox" && ! -L "$HOME/inbox" ]]; then
+        run ln -sT "$HOME/syncthing/workspace/inbox" "$HOME/inbox"
+      fi
+    fi
+  '';
+
   home.activation.initPasswordStore = cloneRepo {
     source = "git@github.com:breakds/PastOre.git";
     path = ".password-store";
