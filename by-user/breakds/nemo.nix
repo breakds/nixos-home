@@ -10,6 +10,9 @@ let
 in {
   home.packages = [ pkgs.nemo ];
 
+  xdg.dataFile."icons/hicolor/scalable/apps/system-file-manager.svg".source =
+    "${pkgs.nemo}/share/icons/hicolor/scalable/apps/nemo.svg";
+
   # Override folder handling in Niri without replacing other MIME preferences.
   xdg.configFile."niri-mimeapps.list".text = ''
     [Default Applications]
