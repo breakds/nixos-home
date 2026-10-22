@@ -8,6 +8,7 @@
     ./zellij.nix
     ./xsession
     ./niri
+    ./nemo.nix
     ./sync.nix
     ./ssh.nix
     ./unison-remote-dev.nix
