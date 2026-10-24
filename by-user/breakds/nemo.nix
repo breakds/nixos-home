@@ -10,6 +10,17 @@ let
 in {
   home.packages = [ pkgs.nemo ];
 
+  xdg.dataFile."nemo/actions/extract-zip.nemo_action".text = ''
+    [Nemo Action]
+    Name=Extract Here
+    Exec=${pkgs.unzip}/bin/unzip -n -d %P %F
+    Icon-Name=package-x-generic
+    Selection=s
+    Extensions=zip;
+    Quote=double
+    UriScheme=file
+  '';
+
   xdg.dataFile."icons/hicolor/scalable/apps/system-file-manager.svg".source =
     "${pkgs.nemo}/share/icons/hicolor/scalable/apps/nemo.svg";
 
