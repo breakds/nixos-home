@@ -1,6 +1,26 @@
 { config, lib, pkgs, ... }:
 
 let
+  extractZipToFolder = pkgs.writeShellScript "nemo-extract-zip-to-folder" ''
+    archive="$1"
+    exec ${pkgs.unzip}/bin/unzip -n -d "''${archive%.*}" "$archive"
+  '';
+
+  compressZip = pkgs.writeShellScript "nemo-compress-zip" ''
+    set -eu
+    cd -- "$1"
+    shift
+    files=( "''${@##*/}" )
+    name="''${files[0]}"
+    archive="$name.zip"
+    suffix=1
+    while [ -e "$archive" ]; do
+      archive="$name ($suffix).zip"
+      suffix=$((suffix + 1))
+    done
+    exec ${pkgs.zip}/bin/zip -r -nw "./$archive" -- "''${files[@]}"
+  '';
+
   defaultBookmarks = pkgs.writeText "file-bookmarks" (lib.concatLines [
     "file://${config.home.homeDirectory}/syncthing/workspace/inbox inbox"
     "file://${config.home.homeDirectory}/syncthing/workspace workspace"
@@ -17,6 +37,28 @@ in {
     Icon-Name=package-x-generic
     Selection=s
     Extensions=zip;
+    Quote=double
+    UriScheme=file
+  '';
+
+  xdg.dataFile."nemo/actions/extract-zip-to-folder.nemo_action".text = ''
+    [Nemo Action]
+    Name=Extract to %e/
+    Exec=${extractZipToFolder} %F
+    Icon-Name=package-x-generic
+    Selection=s
+    Extensions=zip;
+    Quote=double
+    UriScheme=file
+  '';
+
+  xdg.dataFile."nemo/actions/compress-zip.nemo_action".text = ''
+    [Nemo Action]
+    Name=Compress to ZIP
+    Exec=${compressZip} %P %F
+    Icon-Name=package-x-generic
+    Selection=notnone
+    Extensions=any;
     Quote=double
     UriScheme=file
   '';
