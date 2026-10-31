@@ -10,6 +10,7 @@
     ./niri
     ./nemo.nix
     ./sync.nix
+    ./syncthing.nix
     ./ssh.nix
     ./unison-remote-dev.nix
     ./vscode.nix
