@@ -30,11 +30,15 @@
             id =
               "JEXYKVV-PL5TIBV-OHDNCRN-BXCYDRJ-DSQXPZD-T7NUE7Z-JRS44FU-QVXBKAV";
           };
+          "honeycrisp" = {
+            id =
+              "GQDPASV-VP63IWG-5RIQPDW-7FE4YW5-374WZJ4-H4PDZVD-63NB5SF-QX2JJQ5";
+          };
         };
 
         folders.workspace = {
           path = "${config.home.homeDirectory}/syncthing/workspace";
-          devices = [ "hand" "claw" "malenia" "brock" "grapple" ];
+          devices = [ "hand" "claw" "malenia" "brock" "grapple" "honeycrisp" ];
           ignorePerms = true;
           rescanIntervalS = 3600;
           versioning = {
