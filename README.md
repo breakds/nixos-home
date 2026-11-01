@@ -3,6 +3,18 @@ This is the flake of my home manager settings
 
 ## Syncthing
 
+The flake exports `homeModules.syncthing` for Home Manager configurations on
+Linux and macOS. Import it into the user's Home Manager modules and set
+`services.syncthing.enable = true`. The export references the same module used
+by `nixosModules.breakds-home`; existing NixOS imports and host opt-ins remain
+unchanged.
+
+Consumers can make this flake's `nixpkgs` and `home-manager` inputs follow their
+own versions. This does not change the pinned versions used when building this
+repository independently. The Linux systemd state-directory settings are
+inactive on macOS, where Home Manager manages the launchd service and native
+Syncthing state directory.
+
 `by-user/breakds/syncthing.nix` owns the peer and folder settings. Hosts opt in
 with `home-manager.users.breakds.services.syncthing.enable = true`; NixOS owns
 the firewall rules and `users.users.breakds.linger = true`.

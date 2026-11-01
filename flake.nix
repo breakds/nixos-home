@@ -25,6 +25,9 @@
 
         };
     in {
+      # Plain Home Manager module; consumers provide their own pkgs and lib.
+      homeModules.syncthing = ./by-user/breakds/syncthing.nix;
+
       nixosModules.breakds-home = mkHomeManagerModule {
         user = "breakds";
         imports = [ ./by-user/breakds ];
